@@ -18,7 +18,15 @@ This project predicts machine failures using machine learning techniques on the 
 - Jupyter Notebook
 
 ## Dataset
-AI4I Predictive Maintenance Dataset
+
+This project uses the AI4I Predictive Maintenance Dataset.
+
+For detailed information about the dataset, see:
+[dataset_overview.md](dataset_overview.md)
+
+## Original Dataset
+-Total Rows: 10,000
+-Total Columns: 14
 
 ## Features
 - Data Cleaning
