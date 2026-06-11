@@ -88,44 +88,52 @@ The cleaned dataset was generated and saved for further machine learning tasks.
 
 ## Repository Structure
 
+```text
 Data/
 ├── preprocessed_ai4i2020.csv
 
 Notebook/
 ├── cleaning.ipynb
+├── failure_analysis.ipynb
+
+reports/
+├── data_quality_report.md
 
 README.md
+```
 
 ---
 
 ## Current Progress
 
-Completed:
+### Completed
 
 * Dataset Collection
 * Dataset Loading
 * Data Quality Assessment
 * Missing Value Analysis
 * Duplicate Record Analysis
+* Data Type Validation
 * Feature Selection
 * Cleaned Dataset Generation
+* Machine Failure Distribution Analysis
+* Data Quality Report Documentation
+* GitHub Repository Documentation
 
-In Progress:
+### Deliverables Completed
+
+* Cleaned Dataset (`preprocessed_ai4i2020.csv`)
+* Data Cleaning Notebook (`cleaning.ipynb`)
+* Failure Analysis Notebook (`failure_analysis.ipynb`)
+* Data Quality Report (`data_quality_report.md`)
+
+### In Progress
 
 * Feature Engineering
+* Contextual Data Fusion
 * Model Training
 * Model Evaluation
-
----
-
-## Technologies Used
-
-* Python
-* Pandas
-* NumPy
-* Jupyter Notebook
-* Git
-* GitHub
+* Noise Sensitivity Analysis
 
 ---
 
@@ -139,12 +147,9 @@ Responsible for:
 * Data Validation
 * Missing Value Analysis
 * Duplicate Detection
+* Data Type Validation
 * Feature Selection
 * Dataset Preparation
+* Machine Failure Distribution Analysis
+* Data Quality Reporting
 * Preprocessing Documentation
-
----
-
-## Expected Outcome
-
-The final system will predict potential machine failures using IoT sensor data and enable proactive maintenance decisions in manufacturing and automotive environments.
