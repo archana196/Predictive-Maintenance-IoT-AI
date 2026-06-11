@@ -9,8 +9,9 @@ This project predicts machine failures using machine learning techniques on the 
 - Abhay soni
 - Arundhathi k
   
-## project Architecture Diagram
- Dataset
+## Project Architecture Diagram
+```text
+Dataset
    │
    ▼
 Data Collection
@@ -31,7 +32,8 @@ Model Development
 Model Evaluation
    │
    ▼
-Predictive Maintenance System 
+Predictive Maintenance System
+```
 
 ## Technologies Used
 - Python
@@ -45,7 +47,6 @@ Predictive Maintenance System
 AI4I Predictive Maintenance Dataset
 
 ## Dataset Statistics
-
 | Metric | Value |
 |---------|---------|
 | Total Records | 10,000 |
@@ -70,7 +71,9 @@ AI4I Predictive Maintenance Dataset
 - OSF
 - RNF
 
-##Folder Structure
+## Folder Structure
+
+```text
 project/
 │
 ├── data/
@@ -90,6 +93,7 @@ project/
 │   └── feature_engineering_summary.md
 │
 └── README.md
+```
 
 ## Week-wise Roadmap
 
