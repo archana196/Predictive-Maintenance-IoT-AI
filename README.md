@@ -1,23 +1,6 @@
 # Predictive-Maintenance-IoT-AI
 
-## Project Overview
-This project focuses on building an AI-powered Predictive Maintenance System for manufacturing and automotive environments using IoT sensor data. The objective is to predict machine failures before they occur, helping industries reduce downtime, maintenance costs, and equipment breakdowns.
 
-## Team Members
-- Archana 
-- Ajay 
-- Abhay
-- Arundhathi
-
-## Technologies Used
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Scikit-learn
-- Jupyter Notebook
-
-## Dataset
 
 This project uses the AI4I Predictive Maintenance Dataset.
 
