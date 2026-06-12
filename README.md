@@ -137,6 +137,40 @@ README.md
 
 ---
 
+## Validation Results
+
+A comprehensive validation process was performed on the preprocessed AI4I 2020 Predictive Maintenance Dataset to ensure data quality and consistency before machine learning model development.
+
+### Dataset Validation Summary
+
+| Validation Check              | Result                   |
+| ----------------------------- | ------------------------ |
+| Dataset Loaded Successfully   | Passed                   |
+| Dataset Shape Verification    | 10,000 Rows × 12 Columns |
+| Missing Values                | 0 Found                  |
+| Duplicate Records             | 0 Found                  |
+| Data Type Validation          | Passed                   |
+| Column Validation             | Passed                   |
+| Statistical Summary Generated | Completed                |
+| Target Variable Validation    | Completed                |
+| Failure Category Validation   | Completed                |
+| Dataset Integrity Check       | Passed                   |
+
+### Key Findings
+
+* No missing values were detected across any feature.
+* No duplicate records were found.
+* All features contain valid and consistent data types.
+* The dataset structure was verified successfully.
+* Machine failure and failure category distributions were validated.
+* The dataset passed all quality and integrity checks.
+
+### Validation Status
+
+✅ Dataset Successfully Validated
+
+The dataset is ready for feature engineering, contextual data fusion, and machine learning model development.
+
 ## Team Contribution
 
 ### Ajay Verma
