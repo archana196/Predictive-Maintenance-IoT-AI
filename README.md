@@ -100,7 +100,7 @@ project/
 
 ## data/
 
-### ai4i2020.csv(data/ai4i2020.csv)
+### [ai4i2020.csv](data/ai4i2020.csv)
 
 Contains the original AI4I 2020 Predictive Maintenance dataset.
 
@@ -115,7 +115,7 @@ Purpose:
 
 ## docs/
 
-### dataset_overview.md(Docs/Dataset overview.md)
+### [dataset_overview.md](Docs/Dataset overview.md)
 
 Provides a high-level description of the dataset.
 
@@ -130,7 +130,7 @@ Contents:
 
 ---
 
-### data_dictionary.md(Docs/data_dictionary.md)
+### [data_dictionary.md](Docs/data_dictionary.md)
 
 Contains detailed metadata for every feature.
 
@@ -185,7 +185,7 @@ Outputs:
 
 ---
 
-### feature_engineering.ipynb
+### [feature_engineering_aummery](feature_enginnering_summary.md)
 
 Feature engineering notebook.
 
@@ -215,7 +215,7 @@ Generate advanced predictive features for machine learning.
 
 ## reports/
 
-### data_quality_report.md(Reports/data_quality_report.md)
+### [data_quality_report.md](Reports/data_quality_report.md)
 
 Documents dataset quality assessment.
 
@@ -236,7 +236,7 @@ Key Findings:
 
 ---
 
-### week1_summary.md(Reports/week1_summary.md)
+### [week1_summary.md](Reports/week1_summary.md)
 
 Summarizes all Week 1 activities.
 
@@ -255,7 +255,7 @@ Track project progress and internship deliverables.
 
 ---
 
- ### 📄 week1_report.md(Repots/Week1_report.md)
+ ### 📄 [week1_report.md](Repots/Week1_report.md)
  
 Comprehensive Week 1 project report documenting all activities completed during the first phase of the Predictive Maintenance project. The report includes:
 - Project overview and objectives
