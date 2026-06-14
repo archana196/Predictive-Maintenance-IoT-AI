@@ -1,12 +1,10 @@
-# Infotact Banglore Internshi Project 1
-Manufacturing and Automotive Contextual Predictive Maintenance (IoT Edge AI)
-# Infotact Bangalore Internship Project 1
+# Infotact Bangalore Internship – Project 1
 
-## Manufacturing and Automotive Contextual Predictive Maintenance (IoT Edge AI)
+# Manufacturing & Automotive Contextual Predictive Maintenance (IoT Edge AI)
 
-### Project Overview
+## Project Overview
 
-This project focuses on building an AI-powered Predictive Maintenance System for manufacturing and automotive environments using IoT sensor data. The objective is to predict machine failures before they occur, helping industries reduce downtime, maintenance costs, and equipment breakdowns.
+This project aims to develop an AI-powered Predictive Maintenance System for manufacturing and automotive environments using Industrial IoT sensor data. The primary objective is to predict machine failures before they occur, enabling proactive maintenance, reducing downtime, lowering operational costs, and improving equipment reliability.
 
 ---
 
@@ -14,10 +12,12 @@ This project focuses on building an AI-powered Predictive Maintenance System for
 
 **Dataset:** AI4I 2020 Predictive Maintenance Dataset
 
-### Original Dataset
+### Original Dataset Statistics
 
-* Total Rows: **10,000**
-* Total Columns: **14**
+| Metric        | Value  |
+| ------------- | ------ |
+| Total Rows    | 10,000 |
+| Total Columns | 14     |
 
 ### Features
 
@@ -30,59 +30,101 @@ This project focuses on building an AI-powered Predictive Maintenance System for
 * Torque [Nm]
 * Tool Wear [min]
 * Machine Failure
+* TWF (Tool Wear Failure)
+* HDF (Heat Dissipation Failure)
+* PWF (Power Failure)
+* OSF (Overstrain Failure)
+* RNF (Random Failure)
+
+---
+
+## Data Cleaning & Preprocessing
+
+The dataset was thoroughly inspected and cleaned to ensure data quality before model development.
+
+### Preprocessing Activities
+
+* Dataset loading and inspection
+* Dataset structure validation
+* Missing value analysis
+* Duplicate record detection
+* Data type validation
+* Removal of unnecessary identifier columns:
+
+  * UDI
+  * Product ID
+* Cleaned dataset generation
+
+### Processed Dataset Statistics
+
+| Metric        | Value  |
+| ------------- | ------ |
+| Total Rows    | 10,000 |
+| Total Columns | 12     |
+
+---
+
+## Data Quality Assessment
+
+### Missing Value Analysis
+
+* Missing Values Found: **0**
+* Dataset Completeness: **100%**
+
+### Duplicate Record Analysis
+
+* Duplicate Records Found: **0**
+
+### Data Type Validation
+
+All features were validated successfully and contain consistent data types suitable for machine learning workflows.
+
+### Dataset Integrity
+
+The dataset passed all integrity and quality validation checks.
+
+---
+
+## Validation Results
+
+A dedicated validation pipeline was implemented to verify dataset consistency and readiness for machine learning.
+
+| Validation Check               | Status   |
+| ------------------------------ | -------- |
+| Dataset Loading                | ✅ Passed |
+| Shape Verification             | ✅ Passed |
+| Column Validation              | ✅ Passed |
+| Missing Value Validation       | ✅ Passed |
+| Duplicate Detection            | ✅ Passed |
+| Data Type Validation           | ✅ Passed |
+| Statistical Summary Validation | ✅ Passed |
+| Target Variable Validation     | ✅ Passed |
+| Failure Category Validation    | ✅ Passed |
+| Dataset Integrity Check        | ✅ Passed |
+
+### Validation Conclusion
+
+The dataset successfully passed all validation checks and is ready for feature engineering, contextual data fusion, and machine learning model development.
+
+---
+
+## Exploratory Analysis
+
+### Machine Failure Distribution Analysis
+
+Performed class distribution analysis on the target variable to understand dataset imbalance and prepare for future modeling strategies.
+
+### Failure Category Analysis
+
+Validated the distribution of:
+
 * TWF
 * HDF
 * PWF
 * OSF
 * RNF
 
----
-
-## Data Cleaning and Preprocessing
-
-The following preprocessing steps were performed:
-
-### 1. Dataset Loading
-
-* Loaded the AI4I 2020 dataset using Pandas.
-* Inspected dataset structure and feature information.
-
-### 2. Data Quality Assessment
-
-* Checked dataset dimensions.
-* Analyzed feature names and data types.
-* Verified dataset consistency.
-
-### 3. Missing Value Analysis
-
-* Checked all columns for missing values.
-* Result: **No missing values found.**
-
-### 4. Duplicate Record Analysis
-
-* Checked for duplicate records.
-* Result: **No duplicate rows found.**
-
-### 5. Feature Selection
-
-Removed unnecessary identifier columns:
-
-* UDI
-* Product ID
-
-Reason:
-
-* These columns do not contribute to machine failure prediction.
-* They are unique identifiers and may introduce noise into the model.
-
-### 6. Cleaned Dataset Generation
-
-After preprocessing:
-
-* Rows: **10,000**
-* Columns: **12**
-
-The cleaned dataset was generated and saved for further machine learning tasks.
+This analysis provides insights into machine failure patterns and supports future predictive modeling.
 
 ---
 
@@ -95,6 +137,7 @@ Data/
 Notebook/
 ├── cleaning.ipynb
 ├── failure_analysis.ipynb
+├── validation.ipynb
 
 reports/
 ├── data_quality_report.md
@@ -104,86 +147,71 @@ README.md
 
 ---
 
-## Current Progress
+## Deliverables Completed
+
+### Datasets
+
+* preprocessed_ai4i2020.csv
+
+### Notebooks
+
+* cleaning.ipynb
+* failure_analysis.ipynb
+* validation.ipynb
+
+### Reports
+
+* data_quality_report.md
+
+---
+
+## Current Project Status
 
 ### Completed
 
 * Dataset Collection
-* Dataset Loading
+* Dataset Cleaning
 * Data Quality Assessment
 * Missing Value Analysis
 * Duplicate Record Analysis
 * Data Type Validation
 * Feature Selection
-* Cleaned Dataset Generation
+* Dataset Validation
 * Machine Failure Distribution Analysis
-* Data Quality Report Documentation
-* GitHub Repository Documentation
+* Data Quality Reporting
+* Documentation
 
-### Deliverables Completed
-
-* Cleaned Dataset (`preprocessed_ai4i2020.csv`)
-* Data Cleaning Notebook (`cleaning.ipynb`)
-* Failure Analysis Notebook (`failure_analysis.ipynb`)
-* Data Quality Report (`data_quality_report.md`)
-
-### In Progress
+### Upcoming Tasks
 
 * Feature Engineering
 * Contextual Data Fusion
+* External Data Integration
 * Model Training
 * Model Evaluation
 * Noise Sensitivity Analysis
+* Performance Optimization
 
 ---
-
-## Validation Results
-
-A comprehensive validation process was performed on the preprocessed AI4I 2020 Predictive Maintenance Dataset to ensure data quality and consistency before machine learning model development.
-
-### Dataset Validation Summary
-
-| Validation Check              | Result                   |
-| ----------------------------- | ------------------------ |
-| Dataset Loaded Successfully   | Passed                   |
-| Dataset Shape Verification    | 10,000 Rows × 12 Columns |
-| Missing Values                | 0 Found                  |
-| Duplicate Records             | 0 Found                  |
-| Data Type Validation          | Passed                   |
-| Column Validation             | Passed                   |
-| Statistical Summary Generated | Completed                |
-| Target Variable Validation    | Completed                |
-| Failure Category Validation   | Completed                |
-| Dataset Integrity Check       | Passed                   |
-
-### Key Findings
-
-* No missing values were detected across any feature.
-* No duplicate records were found.
-* All features contain valid and consistent data types.
-* The dataset structure was verified successfully.
-* Machine failure and failure category distributions were validated.
-* The dataset passed all quality and integrity checks.
-
-### Validation Status
-
-✅ Dataset Successfully Validated
-
-The dataset is ready for feature engineering, contextual data fusion, and machine learning model development.
 
 ## Team Contribution
 
 ### Ajay Verma
 
-Responsible for:
+#### Responsibilities
 
 * Data Cleaning
 * Data Validation
 * Missing Value Analysis
 * Duplicate Detection
-* Data Type Validation
+* Data Type Verification
 * Feature Selection
 * Dataset Preparation
 * Machine Failure Distribution Analysis
 * Data Quality Reporting
-* Preprocessing Documentation
+* Repository Documentation
+
+---
+
+## Expected Outcome
+
+The final system will combine IoT telemetry and contextual environmental factors to predict potential machine failures before they occur, enabling proactive maintenance decisions and reducing operational downtime.
