@@ -71,6 +71,10 @@ The Machine Failure column serves as the primary target variable for predictive 
 
 ---
 
+# Week 1: IoT Telemetry Ingestion and Signal Processing
+
+
+
 # Project Structure
 
 ```text
@@ -322,6 +326,173 @@ Created rolling statistical features:
 | Arundhati | Documentation review and repository management |
 
 ---
+# week 1: completed 
+
+
+# Week 2: Contextual Data Integration and Feature Engineering
+
+## Week Objective
+
+The objective of Week 2 is to enhance the predictive maintenance system by integrating external contextual information with machine sensor data. This phase focuses on generating contextual variables, performing data fusion, researching advanced feature engineering techniques, and preparing the dataset for improved predictive maintenance analysis.
+
+### Goals
+
+- Add timestamps to machine sensor records.
+- Generate external contextual data.
+- Merge contextual data with the AI4I dataset.
+- Research contextual feature engineering techniques.
+- Analyze relationships between machine and contextual variables.
+- Document the data fusion process.
+- Prepare the dataset for predictive maintenance modeling.
+
+---
+
+## Team Responsibilities
+
+| Team Member | Responsibilities |
+|------------|------------------|
+| Archana | Add timestamps to AI4I dataset, merge contextual data, perform correlation analysis, conduct ablation study, manage GitHub issues and project board |
+| Ajay | Generate external contextual dataset including ambient temperature, load density, humidity, shift, and day type |
+| Abhay | Research contextual feature engineering methods, identify new features, prepare implementation notebook and research notes |
+| Arundhati | Create contextual variable documentation, update README, prepare data fusion documentation |
+
+---
+
+## Deliverables
+
+### Archana
+- `timestamps_added.csv`
+- `merged_context_dataset.csv`
+- `correlation_analysis.ipynb`
+- `ablation_study.ipynb`
+
+### Ajay
+- `external_context.csv`
+
+### Abhay
+- `feature_engineering.ipynb`
+- `research_notes.md`
+
+### Arundhati
+- `context_overview.md`
+- `data_fusion_documentation.md`
+- Updated `README.md`
+
+---
+
+## Updated Folder Structure
+
+```text
+project/
+│
+├── data/
+│   ├── ai4i2020.csv
+│   ├── timestamps_added.csv
+│   ├── external_context.csv
+│   └── merged_context_dataset.csv
+│
+├── docs/
+│   ├── dataset_overview.md
+│   ├── data_dictionary.md
+│   ├── context_overview.md
+│   ├── research_notes.md
+│   └── data_fusion_documentation.md
+│
+├── notebooks/
+│   ├── data_cleaning.ipynb
+│   ├── eda.ipynb
+│   ├── feature_engineering.ipynb
+│   ├── correlation_analysis.ipynb
+│   └── ablation_study.ipynb
+│
+├── reports/
+│   ├── data_quality_report.md
+│   ├── week1_summary.md
+│   ├── correlation_report.md
+│   └── ablation_study_report.md
+│
+└── README.md
+```
+
+---
+
+## Initial Data Fusion Documentation
+
+### Overview
+
+Data fusion is the process of combining machine sensor data with external contextual information to create a more comprehensive dataset for predictive maintenance analysis.
+
+The AI4I dataset contains machine operational parameters and failure indicators, while the contextual dataset contains environmental and operational conditions that may influence machine performance.
+
+By integrating these datasets, the project can better understand how external factors contribute to machine failures.
+
+---
+
+### Source Datasets
+
+#### AI4I Predictive Maintenance Dataset
+
+Contains machine sensor measurements and failure indicators.
+
+Key variables include:
+
+- Air Temperature [K]
+- Process Temperature [K]
+- Rotational Speed [rpm]
+- Torque [Nm]
+- Tool Wear [min]
+- Machine Failure
+
+#### External Context Dataset
+
+Contains simulated environmental and operational data.
+
+Variables include:
+
+- Timestamp
+- Ambient Temperature
+- Load Density
+- Humidity
+- Shift
+- Day Type
+
+---
+
+### Data Fusion Method
+
+The datasets will be merged using the **timestamp** column.
+
+#### Fusion Steps
+
+1. Generate timestamps for all AI4I records.
+2. Create external contextual data corresponding to each timestamp.
+3. Align both datasets using timestamp values.
+4. Merge machine sensor data and contextual data.
+5. Validate row counts and data consistency.
+
+---
+
+### Benefits of Data Fusion
+
+- Improves predictive model accuracy.
+- Provides environmental context for machine operations.
+- Supports advanced feature engineering.
+- Enables contextual failure analysis.
+- Enhances maintenance planning and decision-making.
+
+---
+
+### Expected Output
+
+The fusion process will generate a unified dataset containing:
+
+- Machine sensor measurements
+- Environmental conditions
+- Operational context variables
+- Failure indicators
+
+This dataset will be used for feature engineering, correlation analysis, and predictive maintenance model development in subsequent project phases.
+
 
 # Technologies Used
 
