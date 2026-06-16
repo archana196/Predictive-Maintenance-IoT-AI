@@ -12,7 +12,7 @@ This project focuses on predicting machine failures using industrial IoT sensor 
 
 ---
 
-## My Contributions (Archana)
+## My Contributions 
 
 ### Dataset Ingestion
 - Loaded AI4I Predictive Maintenance Dataset using Pandas
