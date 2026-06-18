@@ -481,6 +481,52 @@ The datasets will be merged using the **timestamp** column.
 - Enhances maintenance planning and decision-making.
 
 ---
+## Recent Progress
+
+### Contextual Data Integration
+
+External contextual variables were generated and integrated with the AI4I predictive maintenance dataset, including:
+
+* Timestamp
+* Ambient Temperature
+* Humidity
+* Load Density
+* Shift
+* Day Type
+
+### Feature Engineering
+
+Additional contextual and engineered features were created to enhance predictive maintenance analysis.
+
+Implemented techniques include:
+
+* Shift Encoding
+* Day Type Encoding
+* Interaction Features
+* Lag Features
+* Rolling Statistical Features
+
+### Correlation Analysis
+
+Correlation analysis was conducted to examine relationships between contextual variables, engineered features, and machine failure. A correlation heatmap was generated to visualize feature interactions.
+
+### Dataset Validation
+
+The integrated dataset was validated through:
+
+* Missing value checks
+* Duplicate detection
+* Data type verification
+* Feature distribution analysis
+
+### Ablation Study Preparation
+
+An ablation study framework was prepared to compare:
+
+* Internal telemetry features only
+* Internal telemetry + contextual features
+
+using Accuracy, Precision, Recall, and F1 Score as evaluation metrics.
 
 ### Expected Output
 
