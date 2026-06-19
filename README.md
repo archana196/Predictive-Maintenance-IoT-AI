@@ -1,167 +1,139 @@
-# Infotact Bangalore Internship – Project 1
+## Contextual Data Fusion
 
-# Manufacturing & Automotive Contextual Predictive Maintenance (IoT Edge AI)
+To enhance predictive maintenance capabilities, external contextual variables were generated and integrated with the machine telemetry dataset using timestamp-based alignment.
 
-## Project Overview
+### External Context Features
 
-This project aims to develop an AI-powered Predictive Maintenance System for manufacturing and automotive environments using Industrial IoT sensor data. The primary objective is to predict machine failures before they occur, enabling proactive maintenance, reducing downtime, lowering operational costs, and improving equipment reliability.
+The following contextual variables were generated:
 
----
+| Feature             | Range / Categories      |
+| ------------------- | ----------------------- |
+| Ambient_Temperature | 20°C – 40°C             |
+| Load_Density        | 30% – 100%              |
+| Humidity            | 40% – 90%               |
+| Shift               | Morning, Evening, Night |
+| Day_Type            | Weekday, Weekend        |
 
-## Dataset Information
+### Timestamp Alignment
 
-**Dataset:** AI4I 2020 Predictive Maintenance Dataset
+A timestamp column was added to the AI4I dataset and used as the merge key for contextual data integration.
 
-### Original Dataset Statistics
+### Contextual Dataset Generation
 
-| Metric        | Value  |
-| ------------- | ------ |
-| Total Rows    | 10,000 |
-| Total Columns | 14     |
+Generated:
 
-### Features
+```text
+external_context.csv
+```
 
-* UDI
-* Product ID
-* Type
-* Air Temperature [K]
-* Process Temperature [K]
-* Rotational Speed [rpm]
-* Torque [Nm]
-* Tool Wear [min]
-* Machine Failure
-* TWF (Tool Wear Failure)
-* HDF (Heat Dissipation Failure)
-* PWF (Power Failure)
-* OSF (Overstrain Failure)
-* RNF (Random Failure)
+Rows: 10,000
+
+Status: ✅ Complete
 
 ---
 
-## Data Cleaning & Preprocessing
+## Contextual Dataset Integration
 
-The dataset was thoroughly inspected and cleaned to ensure data quality before model development.
+The machine telemetry dataset and contextual dataset were merged using timestamp-based mapping.
 
-### Preprocessing Activities
+### Merge Details
 
-* Dataset loading and inspection
-* Dataset structure validation
-* Missing value analysis
-* Duplicate record detection
-* Data type validation
-* Removal of unnecessary identifier columns:
+| Property          | Value      |
+| ----------------- | ---------- |
+| Merge Key         | timestamp  |
+| Merge Type        | Left Join  |
+| Telemetry Records | 10,000     |
+| Context Records   | 10,000     |
+| Result            | Successful |
 
-  * UDI
-  * Product ID
-* Cleaned dataset generation
+Generated:
 
-### Processed Dataset Statistics
+```text
+contextual_merged_dataset.csv
+```
 
-| Metric        | Value  |
-| ------------- | ------ |
-| Total Rows    | 10,000 |
-| Total Columns | 12     |
+Status: ✅ Complete
 
 ---
 
-## Data Quality Assessment
+## Post-Merge Validation
 
-### Missing Value Analysis
+A complete validation pipeline was executed after contextual data fusion.
 
-* Missing Values Found: **0**
-* Dataset Completeness: **100%**
+### Validation Checks
 
-### Duplicate Record Analysis
+* Row Count Consistency
+* Timestamp Alignment
+* Missing Value Validation
+* Duplicate Record Validation
+* Data Type Validation
+* Dataset Structure Validation
 
-* Duplicate Records Found: **0**
+### Validation Results
 
-### Data Type Validation
+| Validation Check            | Status   |
+| --------------------------- | -------- |
+| Row Count Consistency       | ✅ Passed |
+| Timestamp Alignment         | ✅ Passed |
+| Missing Value Validation    | ✅ Passed |
+| Duplicate Record Validation | ✅ Passed |
+| Data Type Validation        | ✅ Passed |
+| Dataset Integrity Check     | ✅ Passed |
 
-All features were validated successfully and contain consistent data types suitable for machine learning workflows.
-
-### Dataset Integrity
-
-The dataset passed all integrity and quality validation checks.
-
----
-
-## Validation Results
-
-A dedicated validation pipeline was implemented to verify dataset consistency and readiness for machine learning.
-
-| Validation Check               | Status   |
-| ------------------------------ | -------- |
-| Dataset Loading                | ✅ Passed |
-| Shape Verification             | ✅ Passed |
-| Column Validation              | ✅ Passed |
-| Missing Value Validation       | ✅ Passed |
-| Duplicate Detection            | ✅ Passed |
-| Data Type Validation           | ✅ Passed |
-| Statistical Summary Validation | ✅ Passed |
-| Target Variable Validation     | ✅ Passed |
-| Failure Category Validation    | ✅ Passed |
-| Dataset Integrity Check        | ✅ Passed |
-
-### Validation Conclusion
-
-The dataset successfully passed all validation checks and is ready for feature engineering, contextual data fusion, and machine learning model development.
+Status: ✅ Complete
 
 ---
 
-## Exploratory Analysis
+## Dataset Quality Review
 
-### Machine Failure Distribution Analysis
+The final contextual dataset underwent a comprehensive quality review.
 
-Performed class distribution analysis on the target variable to understand dataset imbalance and prepare for future modeling strategies.
+### Quality Checks Performed
 
-### Failure Category Analysis
+* Missing Value Analysis
+* Duplicate Record Analysis
+* Data Type Verification
+* Feature Distribution Review
+* Dataset Integrity Assessment
 
-Validated the distribution of:
+### Quality Review Results
 
-* TWF
-* HDF
-* PWF
-* OSF
-* RNF
+| Quality Check         | Status   |
+| --------------------- | -------- |
+| Missing Values        | ✅ Passed |
+| Duplicate Records     | ✅ Passed |
+| Data Types            | ✅ Passed |
+| Feature Distributions | ✅ Passed |
+| Dataset Integrity     | ✅ Passed |
 
-This analysis provides insights into machine failure patterns and supports future predictive modeling.
+Status: ✅ Complete
 
 ---
 
-## Repository Structure
+## Updated Repository Structure
 
 ```text
 Data/
+├── ai4i2020.csv
 ├── preprocessed_ai4i2020.csv
+├── timestamps_added.csv
+├── external_context.csv
+├── contextual_merged_dataset.csv
 
 Notebook/
 ├── cleaning.ipynb
 ├── failure_analysis.ipynb
 ├── validation.ipynb
+├── external_context_generation.ipynb
+├── context_data_validation.ipynb
 
 reports/
 ├── data_quality_report.md
+├── context_data_validation.md
+├── dataset_quality_report.md
 
 README.md
 ```
-
----
-
-## Deliverables Completed
-
-### Datasets
-
-* preprocessed_ai4i2020.csv
-
-### Notebooks
-
-* cleaning.ipynb
-* failure_analysis.ipynb
-* validation.ipynb
-
-### Reports
-
-* data_quality_report.md
 
 ---
 
@@ -170,7 +142,7 @@ README.md
 ### Completed
 
 * Dataset Collection
-* Dataset Cleaning
+* Data Cleaning & Preprocessing
 * Data Quality Assessment
 * Missing Value Analysis
 * Duplicate Record Analysis
@@ -178,15 +150,18 @@ README.md
 * Feature Selection
 * Dataset Validation
 * Machine Failure Distribution Analysis
-* Data Quality Reporting
+* External Context Dataset Generation
+* Timestamp Alignment
+* Contextual Data Fusion
+* Post-Merge Data Validation
+* Dataset Quality Review
 * Documentation
 
-### Upcoming Tasks
+### In Progress
 
 * Feature Engineering
-* Contextual Data Fusion
-* External Data Integration
-* Model Training
+* Contextual Feature Analysis
+* Machine Learning Model Development
 * Model Evaluation
 * Noise Sensitivity Analysis
 * Performance Optimization
@@ -207,11 +182,8 @@ README.md
 * Feature Selection
 * Dataset Preparation
 * Machine Failure Distribution Analysis
-* Data Quality Reporting
-* Repository Documentation
-
----
-
-## Expected Outcome
-
-The final system will combine IoT telemetry and contextual environmental factors to predict potential machine failures before they occur, enabling proactive maintenance decisions and reducing operational downtime.
+* External Context Dataset Generation
+* Contextual Data Fusion Support
+* Post-Merge Data Validation
+* Dataset Quality Review
+* Technical Documentation
