@@ -333,7 +333,20 @@ Created rolling statistical features:
 
 ## Week Objective
 
-The objective of Week 2 is to enhance the predictive maintenance system by integrating external contextual information with machine sensor data. This phase focuses on generating contextual variables, performing data fusion, researching advanced feature engineering techniques, and preparing the dataset for improved predictive maintenance analysis.
+The objective of Week 2 was to enrich the AI4I 2020 Predictive Maintenance Dataset by incorporating contextual information that may influence machine behavior and failure patterns. While Week 1 focused on understanding machine telemetry data, Week 2 focused on integrating environmental and operational factors to create a more realistic representation of industrial operating conditions.
+
+The primary goals included:
+
+* Creating a timestamp-enabled machine telemetry dataset.
+* Designing and generating a contextual dataset.
+* Merging machine and contextual datasets through data fusion.
+* Engineering contextual features.
+* Performing exploratory analysis on the fused dataset.
+* Investigating relationships between contextual variables and machine performance.
+* Preparing an enhanced dataset for future machine learning models.
+
+---
+
 
 ### Goals
 
@@ -347,38 +360,239 @@ The objective of Week 2 is to enhance the predictive maintenance system by integ
 
 ---
 
+
+## Timestamp Generation
+
+The original AI4I dataset does not contain timestamps. To support contextual data integration, a timestamp column was generated.
+
+### Process
+
+* Created a continuous timestamp sequence.
+* Simulated one machine reading per minute.
+* Assigned timestamps to all 10,000 records.
+* Verified chronological consistency.
+
+### Outcome
+
+A timestamp-enhanced dataset was created, enabling time-based data fusion and contextual analysis.
+
+---
+
+## Contextual Dataset Design
+
+A synthetic contextual dataset was created to represent environmental and operational conditions within a manufacturing facility.
+
+### Contextual Variables
+
+| Variable            | Description                               |
+| ------------------- | ----------------------------------------- |
+| Timestamp           | Time reference used for data fusion       |
+| Ambient Temperature | Simulated factory environment temperature |
+| Humidity            | Simulated atmospheric humidity            |
+| Load Density        | Estimated production workload             |
+| Shift               | Operational work shift                    |
+| Day Type            | Weekday or Weekend                        |
+
+### Purpose
+
+These variables provide additional information that may influence machine stress, operational efficiency, and failure probability.
+
+---
+
+## Data Fusion Process
+
+Data fusion combines machine telemetry information with contextual variables to create a unified analytical dataset.
+
+### Steps Performed
+
+#### 1. Timestamp Validation
+
+Verified timestamp consistency across both datasets.
+
+#### 2. Dataset Alignment
+
+Ensured both datasets shared a common timestamp structure.
+
+#### 3. Merge Operation
+
+Merged datasets using timestamp as the primary key.
+
+#### 4. Data Integrity Verification
+
+Validated:
+
+* Row counts
+* Timestamp alignment
+* Missing values after merge
+* Dataset consistency
+
+### Result
+
+A single fused dataset containing both machine telemetry and contextual information was successfully created.
+
+---
+
+## Contextual Feature Engineering
+
+Additional features were generated to capture relationships between machine operation and contextual conditions.
+
+### Features Created
+
+#### Temperature Difference
+
+Measures thermal variation between machine processes and surrounding environmental conditions.
+
+```text
+Temperature Difference =
+Process Temperature - Ambient Temperature
+```
+
+#### Load Ratio
+
+Represents relative machine workload intensity.
+
+```text
+Load Ratio =
+Current Load / Maximum Load
+```
+
+#### Humidity Impact
+
+Captures environmental influence on machine operation.
+
+#### Shift Encoding
+
+Converts categorical shift information into numerical values for machine learning.
+
+#### Day Type Encoding
+
+Represents weekday and weekend operating conditions.
+
+### Benefits
+
+These engineered features provide meaningful information that cannot be obtained from raw variables alone.
+
+---
+
+## Correlation Analysis
+
+Correlation analysis was performed to investigate relationships among machine telemetry variables and contextual features.
+
+### Objectives
+
+* Identify strong relationships.
+* Understand contextual influence on machine behavior.
+* Discover potential predictive indicators.
+
+### Findings
+
+#### Temperature Relationships
+
+* Ambient temperature and process temperature exhibit positive correlation.
+* Temperature Difference highlights thermal stress conditions.
+
+#### Operational Load Effects
+
+* Load Density influences rotational speed and torque.
+* Higher production loads may contribute to machine stress.
+
+#### Environmental Influence
+
+* Humidity shows weak direct relationships but may influence machine behavior indirectly.
+* Environmental conditions contribute additional context for failure prediction.
+
+#### Multi-Factor Relationships
+
+Machine failures appear to be influenced by a combination of:
+
+* Temperature
+* Torque
+* Tool Wear
+* Load Density
+* Operational Conditions
+
+This supports the use of contextual data for predictive maintenance.
+
+---
+
 ## Team Responsibilities
 
-| Team Member | Responsibilities |
-|------------|------------------|
-| Archana | Add timestamps to AI4I dataset, merge contextual data, perform correlation analysis, conduct ablation study, manage GitHub issues and project board |
-| Ajay | Generate external contextual dataset including ambient temperature, load density, humidity, shift, and day type |
-| Abhay | Research contextual feature engineering methods, identify new features, prepare implementation notebook and research notes |
-| Arundhati | Create contextual variable documentation, update README, prepare data fusion documentation |
-
----
-
-## Deliverables
-
 ### Archana
-- `timestamps_added.csv`
-- `merged_context_dataset.csv`
-- `correlation_analysis.ipynb`
-- `ablation_study.ipynb`
+
+* Timestamp generation
+* Contextual dataset design
+* Dataset integration coordination
+* Correlation analysis
 
 ### Ajay
-- `external_context.csv`
+
+* Validation of merged dataset
+* Data consistency verification
+* Missing value assessment
+* Documentation support
 
 ### Abhay
-- `feature_engineering.ipynb`
-- `research_notes.md`
+
+* Contextual feature engineering
+* Derived feature creation
+* Dataset enhancement
 
 ### Arundhati
-- `context_overview.md`
-- `data_fusion_documentation.md`
-- Updated `README.md`
+
+* README updates
+* Documentation preparation
+* Week 2 report preparation
+* Repository organization
 
 ---
+
+## Key Findings
+
+1. Timestamp information was successfully added to the AI4I dataset.
+2. Contextual environmental and operational datasets were generated.
+3. Data fusion was completed successfully.
+4. Contextual features provide additional operational insights.
+5. Temperature Difference effectively captures machine thermal behavior.
+6. Load Density influences operational sensor measurements.
+7. Environmental conditions contribute additional predictive information.
+8. The fused dataset provides a more realistic representation of industrial environments.
+9. Contextual information may improve future machine learning model performance.
+10. The project is ready for predictive modeling and ablation studies.
+
+---
+
+## Week 2 Deliverables
+
+Completed deliverables include:
+
+* Timestamp-enhanced AI4I dataset
+* Contextual dataset
+* Data fusion notebook
+* Merged dataset
+* Contextual feature engineering notebook
+* Correlation analysis report
+* Updated README documentation
+* Week 2 completion report
+
+---
+
+## Challenges Encountered
+
+* Designing realistic contextual variables.
+* Maintaining timestamp consistency during merging.
+* Validating data integrity after fusion.
+* Ensuring contextual features remained meaningful for predictive maintenance.
+
+These challenges were successfully addressed through validation and testing procedures.
+
+---
+
+## Conclusion
+
+Week 2 objectives were successfully achieved. The AI4I machine telemetry dataset was enhanced with contextual environmental and operational information through a structured data fusion process. Additional contextual features were engineered, and correlation analysis revealed valuable relationships between machine performance and external conditions.
+
+The resulting fused dataset provides a stronger foundation for predictive maintenance modeling than machine telemetry data alone. The project is now prepared to move into Week 3 activities, including machine learning model development, model evaluation, and ablation studies to measure the impact of contextual information on predictive performance.
+
 
 ## Updated Folder Structure
 
