@@ -1,315 +1,479 @@
-## Contextual Data Fusion
+# Infotact Bangalore Internship – Project 1
 
-To enhance predictive maintenance capabilities, external contextual variables were generated and integrated with the machine telemetry dataset using timestamp-based alignment.
+# Manufacturing & Automotive Contextual Predictive Maintenance (IoT Edge AI)
 
-### External Context Features
+## Internship Details
 
-The following contextual variables were generated:
+| Field                   | Details                                                                    |
+| ----------------------- | -------------------------------------------------------------------------- |
+| Internship Organization | Infotact Bangalore                                                         |
+| Internship Domain       | Artificial Intelligence & Machine Learning                                 |
+| Project Title           | Manufacturing & Automotive Contextual Predictive Maintenance (IoT Edge AI) |
+| Project Duration        | Internship Project – Phase 1                                               |
+| Team Type               | Collaborative Team Project                                                 |
+| Technology Stack        | Python, Pandas, NumPy, Scikit-Learn, Jupyter Notebook, Git, GitHub         |
+| Dataset                 | AI4I 2020 Predictive Maintenance Dataset                                   |
 
-| Feature             | Range / Categories      |
-| ------------------- | ----------------------- |
-| Ambient_Temperature | 20°C – 40°C             |
-| Load_Density        | 30% – 100%              |
-| Humidity            | 40% – 90%               |
-| Shift               | Morning, Evening, Night |
-| Day_Type            | Weekday, Weekend        |
+---
 
-### Timestamp Alignment
+## Project Abstract
 
-A timestamp column was added to the AI4I dataset and used as the merge key for contextual data integration.
+Predictive maintenance is a critical application of Artificial Intelligence in modern manufacturing and automotive industries. Unexpected equipment failures can lead to significant downtime, increased maintenance costs, production losses, and safety risks.
 
-### Contextual Dataset Generation
+This project aims to develop an AI-powered Predictive Maintenance System capable of identifying potential machine failures before they occur by analyzing machine telemetry data and contextual environmental information.
 
-Generated:
+The system combines Industrial IoT sensor measurements with contextual variables such as ambient temperature, load density, humidity, work shifts, and day type to create a more realistic industrial environment for predictive modeling.
+
+The final objective is to build reliable machine learning models that can support proactive maintenance strategies, improve operational efficiency, reduce downtime, and optimize maintenance planning.
+
+---
+
+## Problem Statement
+
+Traditional maintenance approaches are generally classified into:
+
+### Reactive Maintenance
+
+* Maintenance is performed only after failure occurs.
+* Results in costly downtime.
+* Increases operational risk.
+
+### Preventive Maintenance
+
+* Maintenance is performed on a fixed schedule.
+* May replace components unnecessarily.
+* Increases maintenance cost.
+
+### Predictive Maintenance
+
+* Maintenance decisions are based on actual machine condition.
+* Failures can be predicted before occurrence.
+* Improves operational efficiency and equipment reliability.
+
+This project focuses on implementing Predictive Maintenance using Artificial Intelligence and Industrial IoT data.
+
+---
+
+## Project Objectives
+
+The major objectives of this project are:
+
+* Analyze machine telemetry data.
+* Perform data cleaning and validation.
+* Generate contextual environmental datasets.
+* Integrate telemetry and contextual information.
+* Engineer meaningful predictive features.
+* Perform exploratory and correlation analysis.
+* Develop machine learning models for failure prediction.
+* Evaluate model performance using Stratified Cross Validation.
+* Support proactive maintenance decision-making.
+
+---
+
+## Business Impact
+
+The proposed solution can help industries:
+
+* Reduce unexpected equipment failures.
+* Minimize machine downtime.
+* Improve maintenance planning.
+* Increase equipment lifespan.
+* Optimize production efficiency.
+* Reduce operational and maintenance costs.
+* Enable data-driven maintenance decisions.
+
+---
+
+## Technology Stack
+
+### Programming Language
+
+* Python
+
+### Libraries
+
+* Pandas
+* NumPy
+* Matplotlib
+* Scikit-Learn
+
+### Development Environment
+
+* Jupyter Notebook
+* Git
+* GitHub
+
+### Dataset Source
+
+AI4I 2020 Predictive Maintenance Dataset
+
+### Machine Learning Techniques
+
+* Classification Models
+* Feature Engineering
+* Correlation Analysis
+* Stratified K-Fold Cross Validation
+* Model Evaluation
+
+---
+
+## Project Workflow
+
+```text
+Dataset Collection
+        ↓
+Data Cleaning & Validation
+        ↓
+Failure Analysis
+        ↓
+Timestamp Generation
+        ↓
+External Context Generation
+        ↓
+Contextual Data Fusion
+        ↓
+Dataset Validation
+        ↓
+Feature Engineering
+        ↓
+Correlation Analysis
+        ↓
+Model Development
+        ↓
+Stratified Cross Validation
+        ↓
+Performance Evaluation
+        ↓
+Predictive Maintenance System
+```
+
+---
+
+## Dataset Information
+
+Dataset: AI4I 2020 Predictive Maintenance Dataset
+
+Source: UCI Machine Learning Repository
+
+Total Records: 10,000
+
+Total Features: 14
+
+Target Variable:
+
+* Machine Failure
+
+Failure Categories:
+
+* Tool Wear Failure (TWF)
+* Heat Dissipation Failure (HDF)
+* Power Failure (PWF)
+* Overstrain Failure (OSF)
+* Random Failure (RNF)
+
+
+# Project Timeline and Progress Summary
+
+## Week 1 – Data Preparation and Validation
+
+### Dataset Collection
+
+The AI4I 2020 Predictive Maintenance Dataset was selected as the primary dataset for the project. The dataset contains machine telemetry measurements and failure indicators collected from industrial equipment.
+
+### Dataset Understanding
+
+Initial analysis was performed to understand:
+
+* Dataset dimensions
+* Feature descriptions
+* Target variables
+* Failure categories
+* Data quality characteristics
+
+### Data Cleaning and Preprocessing
+
+The following preprocessing tasks were completed:
+
+* Dataset loading and inspection
+* Missing value analysis
+* Duplicate record detection
+* Data type verification
+* Dataset integrity assessment
+* Feature selection
+
+### Identifier Removal
+
+The following non-predictive identifier columns were removed:
+
+* UDI
+* Product ID
+
+These features were excluded because they do not contribute to machine failure prediction and may introduce noise into machine learning models.
+
+### Data Quality Assessment
+
+Validation checks included:
+
+* Missing value detection
+* Duplicate record analysis
+* Data type validation
+* Dataset consistency checks
+
+Results:
+
+* Missing Values: 0
+* Duplicate Records: 0
+* Invalid Data Types: 0
+
+### Exploratory Analysis
+
+Machine failure distributions were analyzed to understand:
+
+* Class imbalance
+* Failure occurrence frequency
+* Failure category distributions
+
+The following failure categories were investigated:
+
+* Tool Wear Failure (TWF)
+* Heat Dissipation Failure (HDF)
+* Power Failure (PWF)
+* Overstrain Failure (OSF)
+* Random Failure (RNF)
+
+### Week 1 Deliverables
+
+* Cleaned Dataset
+* Data Cleaning Notebook
+* Failure Analysis Notebook
+* Validation Notebook
+* Data Quality Report
+* Dataset Validation Report
+
+---
+
+## Week 2 – Contextual Data Integration
+
+### Timestamp Generation
+
+A timestamp column was introduced into the AI4I dataset to enable contextual data fusion.
+
+Generated Dataset:
+
+```text
+timestamps_added.csv
+```
+
+### External Context Dataset Generation
+
+A synthetic contextual dataset was generated to simulate environmental and operational conditions.
+
+Features Generated:
+
+* Ambient Temperature
+* Load Density
+* Humidity
+* Shift
+* Day Type
+
+Generated Dataset:
 
 ```text
 external_context.csv
 ```
 
-Rows: 10,000
+Rows Generated:
 
-Status: ✅ Complete
+```text
+10,000
+```
 
----
+### Contextual Data Fusion
 
-## Contextual Dataset Integration
+The telemetry dataset and contextual dataset were integrated using timestamp-based alignment.
 
-The machine telemetry dataset and contextual dataset were merged using timestamp-based mapping.
+Merge Details:
 
-### Merge Details
+* Merge Key: timestamp
+* Merge Strategy: Left Join
+* Telemetry Records: 10,000
+* Context Records: 10,000
 
-| Property          | Value      |
-| ----------------- | ---------- |
-| Merge Key         | timestamp  |
-| Merge Type        | Left Join  |
-| Telemetry Records | 10,000     |
-| Context Records   | 10,000     |
-| Result            | Successful |
-
-Generated:
+Generated Dataset:
 
 ```text
 contextual_merged_dataset.csv
 ```
 
-Status: ✅ Complete
+### Post-Merge Validation
 
----
+Validation activities included:
 
-## Post-Merge Validation
+* Row count verification
+* Timestamp alignment checks
+* Missing value analysis
+* Duplicate record analysis
+* Data type validation
+* Dataset consistency validation
 
-A complete validation pipeline was executed after contextual data fusion.
+Validation Results:
 
-### Validation Checks
+* Missing Values: 0
+* Duplicate Records: 0
+* Data Type Issues: 0
 
-* Row Count Consistency
-* Timestamp Alignment
-* Missing Value Validation
-* Duplicate Record Validation
-* Data Type Validation
-* Dataset Structure Validation
+### Dataset Quality Review
 
-### Validation Results
+The merged dataset underwent a comprehensive quality assessment.
 
-| Validation Check            | Status   |
-| --------------------------- | -------- |
-| Row Count Consistency       | ✅ Passed |
-| Timestamp Alignment         | ✅ Passed |
-| Missing Value Validation    | ✅ Passed |
-| Duplicate Record Validation | ✅ Passed |
-| Data Type Validation        | ✅ Passed |
-| Dataset Integrity Check     | ✅ Passed |
+Checks Performed:
 
-Status: ✅ Complete
+* Dataset completeness
+* Feature availability
+* Context feature consistency
+* Dataset integrity
+* Distribution review
 
----
+Outcome:
 
-## Dataset Quality Review
+The contextual dataset successfully passed all quality validation checks.
 
-The final contextual dataset underwent a comprehensive quality review.
+### Contextual Feature Engineering
 
-### Quality Checks Performed
+Additional contextual insights were derived from the merged dataset.
 
-* Missing Value Analysis
-* Duplicate Record Analysis
-* Data Type Verification
-* Feature Distribution Review
-* Dataset Integrity Assessment
+Engineered Features:
 
-### Quality Review Results
-
-| Quality Check         | Status   |
-| --------------------- | -------- |
-| Missing Values        | ✅ Passed |
-| Duplicate Records     | ✅ Passed |
-| Data Types            | ✅ Passed |
-| Feature Distributions | ✅ Passed |
-| Dataset Integrity     | ✅ Passed |
-
-Status: ✅ Complete
-
----
-
-## Updated Repository Structure
+#### Temperature Difference
 
 ```text
-Data/
-├── ai4i2020.csv
-├── preprocessed_ai4i2020.csv
-├── timestamps_added.csv
-├── external_context.csv
-├── contextual_merged_dataset.csv
+Temperature Difference =
+Process Temperature - Ambient Temperature
+```
 
-Notebook/
-├── cleaning.ipynb
-├── failure_analysis.ipynb
-├── validation.ipynb
-├── external_context_generation.ipynb
-├── context_data_validation.ipynb
+Purpose:
 
-reports/
-├── data_quality_report.md
-├── context_data_validation.md
-├── dataset_quality_report.md
+Measures thermal stress and operating temperature variation.
+
+#### Load Ratio
 
 ```text
 Load Ratio =
 Current Load / Maximum Load
 ```
 
-#### Humidity Impact
+Purpose:
 
-Captures environmental influence on machine operation.
+Captures relative machine workload intensity.
 
 #### Shift Encoding
 
-Converts categorical shift information into numerical values for machine learning.
+Converts categorical shift information into machine learning compatible numerical values.
 
 #### Day Type Encoding
 
 Represents weekday and weekend operating conditions.
 
-### Benefits
+### Correlation Analysis
 
-These engineered features provide meaningful information that cannot be obtained from raw variables alone.
+Correlation analysis was performed to study relationships between:
 
----
+* Machine telemetry features
+* Environmental factors
+* Operational variables
+* Failure indicators
 
-## Correlation Analysis
+Key Findings:
 
-Correlation analysis was performed to investigate relationships among machine telemetry variables and contextual features.
+* Temperature variables exhibit positive relationships.
+* Load Density influences machine operational characteristics.
+* Tool Wear contributes significantly to failure patterns.
+* Contextual variables provide additional predictive signals.
 
-### Objectives
+### Week 2 Deliverables
 
-* Identify strong relationships.
-* Understand contextual influence on machine behavior.
-* Discover potential predictive indicators.
-
-### Findings
-
-#### Temperature Relationships
-
-* Ambient temperature and process temperature exhibit positive correlation.
-* Temperature Difference highlights thermal stress conditions.
-
-#### Operational Load Effects
-
-* Load Density influences rotational speed and torque.
-* Higher production loads may contribute to machine stress.
-
-#### Environmental Influence
-
-* Humidity shows weak direct relationships but may influence machine behavior indirectly.
-* Environmental conditions contribute additional context for failure prediction.
-
-#### Multi-Factor Relationships
-
-Machine failures appear to be influenced by a combination of:
-
-* Temperature
-* Torque
-* Tool Wear
-* Load Density
-* Operational Conditions
-
-This supports the use of contextual data for predictive maintenance.
+* Timestamp Enhanced Dataset
+* External Context Dataset
+* Merged Contextual Dataset
+* Context Data Validation Notebook
+* Dataset Quality Review Report
+* Week 2 Validation Summary
+* Updated Documentation
 
 ---
 
-## Team Responsibilities
+## Week 3 – Model Development Preparation
 
-### Archana
+### Cross Validation Research
 
-* Timestamp generation
-* Contextual dataset design
-* Dataset integration coordination
-* Correlation analysis
+Research was conducted on:
 
-### Ajay
+* K-Fold Cross Validation
+* Stratified K-Fold Cross Validation
+* Handling Imbalanced Datasets
+* Model Evaluation Strategies
 
-* Validation of merged dataset
-* Data consistency verification
-* Missing value assessment
-* Documentation support
+### Stratified K-Fold Setup
 
-### Abhay
+A sample implementation was prepared using:
 
-* Contextual feature engineering
-* Derived feature creation
-* Dataset enhancement
+```python
+from sklearn.model_selection import StratifiedKFold
+```
 
-### Arundhati
+Objectives:
 
-* README updates
-* Documentation preparation
-* Week 2 report preparation
-* Repository organization
+* Preserve class distribution across folds
+* Improve model evaluation reliability
+* Handle machine failure class imbalance
 
----
+Deliverables:
 
-## Key Findings
+* stratified_cv_setup.ipynb
+* stratified_cv_notes.md
 
-1. Timestamp information was successfully added to the AI4I dataset.
-2. Contextual environmental and operational datasets were generated.
-3. Data fusion was completed successfully.
-4. Contextual features provide additional operational insights.
-5. Temperature Difference effectively captures machine thermal behavior.
-6. Load Density influences operational sensor measurements.
-7. Environmental conditions contribute additional predictive information.
-8. The fused dataset provides a more realistic representation of industrial environments.
-9. Contextual information may improve future machine learning model performance.
-10. The project is ready for predictive modeling and ablation studies.
+### Upcoming Tasks
+
+* Feature Engineering Optimization
+* Machine Learning Model Development
+* Random Forest Training
+* XGBoost Training
+* Model Comparison
+* Ablation Study
+* Performance Evaluation
+* Explainable AI Analysis
 
 ---
 
-## Week 2 Deliverables
+# Final Project Status
 
-Completed deliverables include:
-
-* Timestamp-enhanced AI4I dataset
-* Contextual dataset
-* Data fusion notebook
-* Merged dataset
-* Contextual feature engineering notebook
-* Correlation analysis report
-* Updated README documentation
-* Week 2 completion report
-
----
-
-## Current Project Status
-
-These challenges were successfully addressed through validation and testing procedures.
+## Completed
 
 * Dataset Collection
-* Data Cleaning & Preprocessing
-* Data Quality Assessment
-* Missing Value Analysis
-* Duplicate Record Analysis
-* Data Type Validation
-* Feature Selection
-* Dataset Validation
-* Machine Failure Distribution Analysis
-* External Context Dataset Generation
-* Timestamp Alignment
-* Contextual Data Fusion
-* Post-Merge Data Validation
-* Dataset Quality Review
-* Documentation
-
-
-* Feature Engineering
-* Contextual Feature Analysis
-* Machine Learning Model Development
-* Model Evaluation
-* Noise Sensitivity Analysis
-* Performance Optimization
-
----
-
-## Team Contribution
-
-- Timestamp
-- Ambient Temperature
-- Load Density
-- Humidity
-- Shift
-- Day Type
-
----
-
-#### Responsibilities
-
-* Data Cleaning
-* Data Validation
+* Dataset Cleaning
 * Missing Value Analysis
 * Duplicate Detection
-* Data Type Verification
-* Feature Selection
-* Dataset Preparation
-* Machine Failure Distribution Analysis
-* External Context Dataset Generation
-* Contextual Data Fusion Support
-* Post-Merge Data Validation
+* Data Type Validation
+* Dataset Validation
+* Failure Analysis
+* Timestamp Generation
+* External Context Generation
+* Contextual Data Fusion
+* Post-Merge Validation
 * Dataset Quality Review
-* Technical Documentation
+* Contextual Feature Engineering
+* Correlation Analysis
+* Documentation
+* Cross Validation Research
+
+## In Progress
+
+* Model Development
+* Feature Engineering Enhancement
+* Stratified Cross Validation Setup
+* Ablation Study
+* Model Evaluation
+
+## Expected Outcome
+
+The final AI-powered Predictive Maintenance System will leverage machine telemetry and contextual environmental information to predict machine failures before they occur. The system aims to reduce downtime, optimize maintenance schedules, improve operational efficiency, and support data-driven maintenance decision-making in industrial environments.
