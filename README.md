@@ -753,6 +753,178 @@ The fusion process will generate a unified dataset containing:
 
 This dataset will be used for feature engineering, correlation analysis, and predictive maintenance model development in subsequent project phases.
 
+# week2 completed
+
+# Week 3: Machine Learning Modeling Preparation
+
+## Objective
+
+The objective of Week 3 is to prepare the contextual predictive maintenance dataset for machine learning model development and evaluation. This phase focuses on creating a modeling-ready dataset, addressing class imbalance issues, researching validation techniques, and establishing a reliable workflow for future machine learning experiments.
+
+Building on the work completed during Weeks 1 and 2, the team will utilize the engineered sensor features and contextual operational data to prepare for predictive maintenance model training.
+
+---
+
+## Key Activities
+
+### Dataset Preparation
+
+* Load the `context_features_dataset.csv` dataset.
+* Identify feature columns and target variable.
+* Define **Machine Failure** as the prediction target.
+* Remove unnecessary identifier columns:
+
+  * UDI
+  * Product ID
+* Verify dataset integrity before modeling.
+
+### Class Imbalance Analysis
+
+* Analyze the distribution of machine failure and non-failure records.
+* Calculate failure percentages.
+* Assess the severity of class imbalance.
+* Document findings and modeling implications.
+
+### Stratified Cross Validation Research
+
+* Study the concept of Stratified K-Fold Cross Validation.
+* Understand why traditional K-Fold may be unsuitable for imbalanced datasets.
+* Create sample implementations using Scikit-Learn.
+* Establish a validation strategy for future model evaluation.
+
+### SMOTE Research and Planning
+
+* Investigate Synthetic Minority Over-sampling Technique (SMOTE).
+* Understand how synthetic samples are generated.
+* Identify risks of data leakage.
+* Document best practices for applying SMOTE within cross-validation workflows.
+
+### LightGBM Preparation
+
+* Research LightGBM and its applications.
+* Study advantages for predictive maintenance tasks.
+* Prepare for future model training and performance comparison.
+
+---
+
+## Team Responsibilities
+
+| Team Member | Responsibility                                                                           |
+| ----------- | ---------------------------------------------------------------------------------------- |
+| Archana     | Dataset preparation, target selection, class distribution analysis, project coordination |
+| Ajay        | Stratified Cross Validation research and implementation setup                            |
+| Abhay       | SMOTE research and implementation strategy                                               |
+| Arundhati   | Documentation, README updates, and repository management                                 |
+
+---
+
+## LightGBM Overview
+
+LightGBM (Light Gradient Boosting Machine) is a gradient boosting framework developed by Microsoft that is designed for efficient and high-performance machine learning.
+
+### Key Advantages
+
+* Fast training speed
+* Efficient memory usage
+* High predictive accuracy
+* Strong performance on structured datasets
+* Suitable for large-scale industrial applications
+* Effective for predictive maintenance use cases
+
+LightGBM will be evaluated in future weeks as a candidate model for machine failure prediction.
+
+---
+
+## Deliverables
+
+### Notebooks
+
+```text
+notebooks/
+├── week3_dataset_preparation.ipynb
+├── stratified_cv_setup.ipynb
+└── smote_research.ipynb
+```
+
+### Documentation
+
+```text
+docs/
+├── week3_overview.md
+├── stratified_cv_notes.md
+└── smote_implementation_plan.md
+```
+
+### Reports
+
+```text
+reports/
+└── class_distribution.md
+```
+
+---
+
+## Folder Structure
+
+```text
+project/
+│
+├── data/
+│   ├── ai4i2020.csv
+│   ├── timestamps_added.csv
+│   ├── context_dataset.csv
+│   └── context_features_dataset.csv
+│
+├── notebooks/
+│   ├── week3_dataset_preparation.ipynb
+│   ├── stratified_cv_setup.ipynb
+│   └── smote_research.ipynb
+│
+├── docs/
+│   ├── week3_overview.md
+│   ├── stratified_cv_notes.md
+│   └── smote_implementation_plan.md
+│
+├── reports/
+│   └── class_distribution.md
+│
+└── README.md
+```
+
+---
+
+## Expected Outcomes
+
+By the end of Week 3, the project will achieve:
+
+* A clean and modeling-ready dataset.
+* Clearly defined features and target variables.
+* Comprehensive class imbalance assessment.
+* A documented Stratified Cross Validation workflow.
+* A documented SMOTE implementation strategy.
+* Initial preparation for machine learning model training.
+* Improved project documentation and repository organization.
+
+These outcomes will support Week 4 activities, including machine learning model development, training, validation, and performance evaluation.
+
+---
+
+## Week 3 Completion Status
+
+**Status:** In Progress
+
+### Planned Outputs
+
+* Dataset preparation notebook
+* Class distribution report
+* Stratified Cross Validation research notes
+* SMOTE implementation strategy
+* Week 3 documentation updates
+* README enhancements
+
+The completion of these deliverables will establish a strong foundation for predictive maintenance model development in the upcoming project phases.
+
+
 
 # Technologies Used
 
