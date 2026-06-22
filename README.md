@@ -132,14 +132,134 @@ reports/
 ├── context_data_validation.md
 ├── dataset_quality_report.md
 
-README.md
+```text
+Load Ratio =
+Current Load / Maximum Load
 ```
+
+#### Humidity Impact
+
+Captures environmental influence on machine operation.
+
+#### Shift Encoding
+
+Converts categorical shift information into numerical values for machine learning.
+
+#### Day Type Encoding
+
+Represents weekday and weekend operating conditions.
+
+### Benefits
+
+These engineered features provide meaningful information that cannot be obtained from raw variables alone.
+
+---
+
+## Correlation Analysis
+
+Correlation analysis was performed to investigate relationships among machine telemetry variables and contextual features.
+
+### Objectives
+
+* Identify strong relationships.
+* Understand contextual influence on machine behavior.
+* Discover potential predictive indicators.
+
+### Findings
+
+#### Temperature Relationships
+
+* Ambient temperature and process temperature exhibit positive correlation.
+* Temperature Difference highlights thermal stress conditions.
+
+#### Operational Load Effects
+
+* Load Density influences rotational speed and torque.
+* Higher production loads may contribute to machine stress.
+
+#### Environmental Influence
+
+* Humidity shows weak direct relationships but may influence machine behavior indirectly.
+* Environmental conditions contribute additional context for failure prediction.
+
+#### Multi-Factor Relationships
+
+Machine failures appear to be influenced by a combination of:
+
+* Temperature
+* Torque
+* Tool Wear
+* Load Density
+* Operational Conditions
+
+This supports the use of contextual data for predictive maintenance.
+
+---
+
+## Team Responsibilities
+
+### Archana
+
+* Timestamp generation
+* Contextual dataset design
+* Dataset integration coordination
+* Correlation analysis
+
+### Ajay
+
+* Validation of merged dataset
+* Data consistency verification
+* Missing value assessment
+* Documentation support
+
+### Abhay
+
+* Contextual feature engineering
+* Derived feature creation
+* Dataset enhancement
+
+### Arundhati
+
+* README updates
+* Documentation preparation
+* Week 2 report preparation
+* Repository organization
+
+---
+
+## Key Findings
+
+1. Timestamp information was successfully added to the AI4I dataset.
+2. Contextual environmental and operational datasets were generated.
+3. Data fusion was completed successfully.
+4. Contextual features provide additional operational insights.
+5. Temperature Difference effectively captures machine thermal behavior.
+6. Load Density influences operational sensor measurements.
+7. Environmental conditions contribute additional predictive information.
+8. The fused dataset provides a more realistic representation of industrial environments.
+9. Contextual information may improve future machine learning model performance.
+10. The project is ready for predictive modeling and ablation studies.
+
+---
+
+## Week 2 Deliverables
+
+Completed deliverables include:
+
+* Timestamp-enhanced AI4I dataset
+* Contextual dataset
+* Data fusion notebook
+* Merged dataset
+* Contextual feature engineering notebook
+* Correlation analysis report
+* Updated README documentation
+* Week 2 completion report
 
 ---
 
 ## Current Project Status
 
-### Completed
+These challenges were successfully addressed through validation and testing procedures.
 
 * Dataset Collection
 * Data Cleaning & Preprocessing
@@ -157,7 +277,6 @@ README.md
 * Dataset Quality Review
 * Documentation
 
-### In Progress
 
 * Feature Engineering
 * Contextual Feature Analysis
@@ -170,7 +289,14 @@ README.md
 
 ## Team Contribution
 
-### Ajay Verma
+- Timestamp
+- Ambient Temperature
+- Load Density
+- Humidity
+- Shift
+- Day Type
+
+---
 
 #### Responsibilities
 
