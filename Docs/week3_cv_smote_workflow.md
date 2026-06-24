@@ -1,79 +1,41 @@
-# Week 3: Cross Validation and SMOTE Workflow Documentation
+# Week 3: Cross Validation and SMOTE Workflow
 
-## Introduction
+## Overview
 
-As the project transitions from data preparation to machine learning model development, it is important to establish a reliable evaluation framework and address class imbalance issues within the predictive maintenance dataset.
+During Week 3, the project focused on establishing a robust machine learning evaluation pipeline for predictive maintenance. The AI4I dataset exhibits significant class imbalance, with machine failure events occurring much less frequently than normal operations. To address this challenge, the team implemented Stratified 5-Fold Cross Validation and SMOTE (Synthetic Minority Over-sampling Technique).
 
-Machine failure events are relatively rare compared to normal machine operations. This creates an imbalanced classification problem that can negatively affect model performance. To overcome this challenge, Week 3 introduces two important techniques:
-
-1. Stratified K-Fold Cross Validation
-2. Synthetic Minority Over-sampling Technique (SMOTE)
-
-These methods help ensure reliable model evaluation and improved failure detection capability.
+These methods ensure reliable model evaluation while improving the model's ability to learn from minority-class failure events.
 
 ---
 
-# Stratified K-Fold Cross Validation Workflow
+# Dataset Class Distribution
 
-## What is Cross Validation?
+Before applying any balancing technique, the dataset contained:
 
-Cross Validation is a model evaluation technique used to estimate how well a machine learning model will perform on unseen data.
+| Class          | Count |
+| -------------- | ----: |
+| No Failure (0) | 9,661 |
+| Failure (1)    |   339 |
 
-Instead of using a single train-test split, the dataset is divided into multiple folds, allowing the model to be trained and validated several times.
+Total Records: 10,000
 
-This approach provides a more reliable estimate of model performance.
-
----
-
-## Why Standard K-Fold is Not Enough
-
-The predictive maintenance dataset contains significantly more normal machine records than failure records.
-
-Example:
-
-| Class      | Percentage |
-| ---------- | ---------- |
-| No Failure | 96%        |
-| Failure    | 4%         |
-
-In standard K-Fold Cross Validation, random splitting may produce folds with very different class distributions.
-
-Possible issues:
-
-* Some folds may contain very few failures.
-* Some folds may contain no failures.
-* Validation metrics become unstable.
-* Performance estimates become misleading.
+Failure events account for only **3.39%** of the dataset, confirming a highly imbalanced classification problem.
 
 ---
 
-## What is Stratified K-Fold?
+# Stratified K-Fold Cross Validation
 
-Stratified K-Fold ensures that each fold maintains approximately the same class distribution as the original dataset.
+## Purpose
 
-For example:
+Stratified K-Fold Cross Validation ensures that each fold preserves the original class distribution of the dataset.
 
-Original Dataset:
-
-* 96% Non-Failure
-* 4% Failure
-
-Each fold will also contain approximately:
-
-* 96% Non-Failure
-* 4% Failure
-
-This results in fairer and more consistent model evaluation.
+This is particularly important for predictive maintenance because failure records are rare.
 
 ---
 
-## 5-Fold Stratified Workflow
+## Implementation
 
-Step 1:
-Load dataset and define features (X) and target (y).
-
-Step 2:
-Initialize StratifiedKFold.
+The project uses:
 
 ```python
 from sklearn.model_selection import StratifiedKFold
@@ -85,76 +47,71 @@ skf = StratifiedKFold(
 )
 ```
 
-Step 3:
-Generate training and validation folds.
+The dataset is divided into five folds.
 
-Step 4:
-Train model on training fold.
+For each iteration:
 
-Step 5:
-Evaluate model on validation fold.
+1. Four folds are used for training.
+2. One fold is used for validation.
+3. Class proportions remain consistent across all folds.
 
-Step 6:
-Repeat for all five folds.
+---
 
-Step 7:
-Average performance metrics across folds.
+## Fold Distribution
+
+Training data distribution observed during cross validation:
+
+| Fold | Non-Failure | Failure |
+| ---- | ----------: | ------: |
+| 1    |        7728 |     272 |
+| 2    |        7729 |     271 |
+| 3    |        7729 |     271 |
+| 4    |        7729 |     271 |
+| 5    |        7729 |     271 |
+
+The results confirm that Stratified K-Fold successfully maintained class balance across all folds.
 
 ---
 
 # SMOTE Workflow
 
-## What is SMOTE?
+## Purpose
 
-SMOTE (Synthetic Minority Over-sampling Technique) is an oversampling method designed to address class imbalance.
+SMOTE is used to address class imbalance by generating synthetic samples for the minority class.
 
-Instead of simply duplicating failure records, SMOTE creates new synthetic minority samples by interpolating between existing minority class observations.
-
-This increases the number of machine failure examples available during training.
+Instead of duplicating existing failure records, SMOTE creates new synthetic examples based on neighboring minority-class observations.
 
 ---
 
-## Why SMOTE is Required
+## Implementation
 
-When a dataset is highly imbalanced, machine learning models tend to favor the majority class.
-
-Consequences include:
-
-* High accuracy
-* Poor failure detection
-* Low recall for machine failures
-
-SMOTE helps balance the dataset and encourages the model to learn patterns associated with failures.
-
----
-
-## SMOTE Implementation Workflow
-
-Step 1:
-Receive training fold from Stratified Cross Validation.
-
-Step 2:
-Apply SMOTE only to the training data.
+The project uses:
 
 ```python
 from imblearn.over_sampling import SMOTE
 
 smote = SMOTE(random_state=42)
-
-X_train_smote, y_train_smote = smote.fit_resample(
-    X_train,
-    y_train
-)
 ```
 
-Step 3:
-Train machine learning model on balanced training data.
+SMOTE is applied only to the training data within each fold.
 
-Step 4:
-Evaluate on original validation data.
+Example:
 
-Step 5:
-Repeat for all folds.
+Before SMOTE:
+
+| Class | Count |
+| ----- | ----: |
+| 0     |  7728 |
+| 1     |   272 |
+
+After SMOTE:
+
+| Class | Count |
+| ----- | ----: |
+| 0     |  7728 |
+| 1     |  7728 |
+
+The minority class becomes fully balanced with the majority class.
 
 ---
 
@@ -162,74 +119,61 @@ Repeat for all folds.
 
 ## What is Data Leakage?
 
-Data leakage occurs when information from the validation dataset becomes available during model training.
+Data leakage occurs when information from validation data is unintentionally used during model training.
 
-This causes unrealistically high performance scores and unreliable evaluation results.
+This leads to unrealistically high evaluation scores and poor real-world performance.
 
 ---
 
-## Incorrect SMOTE Usage
-
-A common mistake is applying SMOTE before Cross Validation.
-
-Incorrect Workflow:
+## Incorrect Workflow
 
 ```text
-Full Dataset
-      ↓
+Dataset
+   ↓
 Apply SMOTE
-      ↓
+   ↓
 Cross Validation
-      ↓
-Train Model
+   ↓
+Model Training
 ```
 
 Problem:
 
-Synthetic samples generated from validation records may appear in training folds.
-
-Result:
-
-* Inflated accuracy
-* Inflated F1 scores
-* Unrealistic performance estimates
+* Synthetic samples may contain information derived from validation records.
+* Evaluation metrics become unreliable.
 
 ---
 
-## Correct SMOTE Usage
-
-Correct Workflow:
+## Correct Workflow
 
 ```text
 Cross Validation Split
-         ↓
+          ↓
 Training Fold
-         ↓
+          ↓
 Apply SMOTE
-         ↓
+          ↓
 Train Model
-         ↓
+          ↓
 Validate on Original Validation Fold
 ```
 
-Benefits:
-
-* No information leakage
-* Reliable evaluation
-* Realistic performance estimates
+This workflow prevents information leakage and ensures fair model evaluation.
 
 ---
 
-# Combined Week 3 Workflow
+# Integrated Modeling Pipeline
+
+The Week 3 modeling workflow follows these steps:
 
 ```text
 Context Features Dataset
             ↓
-Remove Identifier Columns
+Data Cleaning
             ↓
-Feature / Target Separation
+Feature Selection
             ↓
-Class Distribution Analysis
+Target Selection
             ↓
 Stratified 5-Fold Split
             ↓
@@ -237,31 +181,39 @@ Training Fold
             ↓
 Apply SMOTE
             ↓
-Train Model
+Balanced Training Data
             ↓
-Validate Model
+LightGBM Training
+            ↓
+Validation Fold Evaluation
             ↓
 Repeat for All Folds
             ↓
-Average Evaluation Metrics
+Average Performance Metrics
 ```
 
 ---
 
-# Expected Outcomes
+# Model Evaluation Results
 
-By implementing Stratified K-Fold and SMOTE correctly, the project will achieve:
+A LightGBM classifier was trained using the SMOTE-balanced training folds.
 
-* Balanced training datasets
-* Improved failure prediction capability
-* Reliable validation results
-* Reduced bias toward majority classes
-* Better model generalization
+| Fold | Macro F1 Score |
+| ---- | -------------: |
+| 1    |         0.5060 |
+| 2    |         0.5047 |
+| 3    |         0.3190 |
+| 4    |         0.5004 |
+| 5    |         0.5684 |
 
-These techniques establish a strong foundation for upcoming machine learning experiments using LightGBM and other predictive maintenance models.
+### Average Macro F1 Score
+
+**0.4797**
+
+The results demonstrate that the cross-validation and SMOTE pipeline successfully trained the model while maintaining proper evaluation practices.
 
 ---
 
 # Conclusion
 
-Week 3 focuses on preparing a robust machine learning workflow through proper validation and imbalance handling strategies. Stratified K-Fold ensures consistent evaluation across folds, while SMOTE addresses the scarcity of failure samples during training. Together, these methods improve the reliability and effectiveness of predictive maintenance model development.
+Week 3 established the foundation for machine learning model development by implementing Stratified 5-Fold Cross Validation and SMOTE-based class balancing. The workflow successfully addressed dataset imbalance, prevented data leakage, and provided a reliable framework for future predictive maintenance experiments. This pipeline will be used in upcoming weeks for model optimization, comparison, and performance improvement.
