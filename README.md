@@ -263,6 +263,11 @@ Generated Dataset:
 ```text
 timestamps_added.csv
 ```
+## Week 3 – Model Development & Evaluation
+
+### Class Imbalance Analysis
+
+The machine failure prediction problem is inherently imbalanced because failure events occur much less frequently
 
 ### External Context Dataset Generation
 
