@@ -1,87 +1,112 @@
-# Contextual Predictive Maintenance (IoT Edge AI)
 
-## Branch: Archana Contribution
 
-This branch contains my work for **Week 1: IoT Telemetry Ingestion and Signal Processing** in the Predictive Maintenance project.
-
----
+# Predictive Maintenance using IoT & AI
 
 ## Project Overview
 
-This project focuses on predicting machine failures using industrial IoT sensor data. The aim is to build a predictive maintenance system using data analysis, signal processing, and machine learning techniques.
+This repository contains my contributions to the Predictive Maintenance using IoT & AI project. The objective is to develop a machine learning model capable of predicting machine failures by combining industrial sensor data with simulated contextual information.
 
 ---
 
-## My Contributions 
+## Contributions
 
-### Dataset Ingestion
-- Loaded AI4I Predictive Maintenance Dataset using Pandas
-- Checked dataset shape, columns, and data types
-- Verified data quality (no missing values)
+### Dataset Preparation
 
-### Exploratory Data Analysis (EDA)
-- Performed statistical analysis using `describe()`
-- Analyzed machine failure distribution
-- Created histograms for sensor features
-- Created boxplots to detect outliers
-- Generated correlation heatmap
+* Uploaded and organized the AI4I 2020 Predictive Maintenance dataset.
+* Explored the dataset and identified the target variable and input features.
+* Removed unnecessary identifier columns for modeling.
+* Analyzed class imbalance in the dataset.
 
-### Data Understanding
-- Identified key sensor variables:
-  - Air Temperature
-  - Process Temperature
-  - Rotational Speed
-  - Torque
-  - Tool Wear
-- Observed strong class imbalance in target variable
+### Contextual Data Integration
 
-### GitHub Work
-- Created and maintained GitHub Project Board
-- Added and tracked Week 1 issues
-- Coordinated team progress
+* Simulated timestamp values for every machine record.
+* Designed the structure of the external contextual dataset.
+* Merged machine sensor data with contextual information using timestamps.
+* Validated merged data and resolved timestamp inconsistencies.
 
----
+### Feature Engineering
 
-## Dataset Summary
+* Created contextual features including:
 
-- Total Records: 10,000
-- Total Features: 14
-- Target Variable: Machine Failure
-- Failure Rate: 3.39%
+  * Temperature Difference (`temp_diff`)
+  * Load Ratio (`load_ratio`)
+  * Humidity Impact (`humidity_impact`)
+* Performed correlation analysis on engineered features.
+* Prepared the final modeling dataset.
 
----
+### Machine Learning Preparation
 
-## Key Insights
+* Prepared feature (`X`) and target (`y`) datasets.
+* Verified class imbalance before model training.
+* Initialized the LightGBM training workflow.
+* Generated baseline model evaluation metrics.
 
-- Dataset is highly imbalanced
-- No missing values found
-- Sensor data shows operational variability
-- Torque and tool wear are important indicators of machine condition
+### Project Coordination
+
+* Created and managed GitHub Issues.
+* Updated the project board.
+* Coordinated task distribution among team members.
+* Maintained project documentation.
 
 ---
 
-## Tools Used
+## Repository Structure
 
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Jupyter Notebook
+```text
+data/
+├── ai4i2020.csv
+├── timestamps_added.csv
+├── external_context.csv
+├── context_features_dataset.csv
+├── model_ready_dataset.csv
+
+notebooks/
+├── timestamp_creation.ipynb
+├── context_merge.ipynb
+├── feature_engineering.ipynb
+├── week3_modeling_setup.ipynb
+├── lightgbm_training.ipynb
+
+reports/
+├── class_distribution.md
+├── week3_dataset_summary.md
+├── lightgbm_setup_report.md
+
+docs/
+├── context_overview.md
+├── project_notes.md
+```
 
 ---
 
-## Week 1 Status
+## Technologies Used
 
-- Dataset ingestion completed
-- EDA completed
-- GitHub tracking completed
-- Feature engineering handled by team member (Abhay)
+* Python
+* Pandas
+* NumPy
+* Scikit-learn
+* LightGBM
+* Matplotlib
+* Git & GitHub
+* Jupyter Notebook
 
 ---
 
-## Next Steps
+## Current Progress
 
-- Contextual data generation (weather, factory load, traffic)
-- Feature fusion with sensor data
-- Advanced feature engineering (Week 2)
+* ✅ Dataset preparation completed
+* ✅ Contextual data integration completed
+* ✅ Feature engineering completed
+* ✅ Baseline LightGBM model implemented
+* 🔄 Stratified Cross Validation and SMOTE integration in progress
+
+---
+
+## Future Work
+
+* Implement Stratified 5-Fold Cross Validation
+* Integrate SMOTE within training folds
+* Compare baseline and balanced models
+* Evaluate Precision, Recall, F1-Score, ROC-AUC
+* Finalize project documentation and results
+
