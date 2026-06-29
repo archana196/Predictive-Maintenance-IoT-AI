@@ -64,3 +64,48 @@ skf = StratifiedKFold(
 ## Conclusion
 
 The Stratified 5-Fold Cross Validation process was successfully executed. The model achieved consistent performance across all folds, providing a reliable foundation for future predictive maintenance experiments and comparative model analysis.
+
+
+---
+
+
+## SMOTE Integration Verification
+
+To prevent data leakage during model evaluation, SMOTE was applied only to the training data within each fold of the Stratified 5-Fold Cross Validation process.
+
+## Correct Implementation
+
+```python
+for train_idx, test_idx in skf.split(X, y):
+
+    X_train = X.iloc[train_idx]
+    X_test = X.iloc[test_idx]
+
+    y_train = y.iloc[train_idx]
+    y_test = y.iloc[test_idx]
+
+    smote = SMOTE(random_state=42)
+
+    X_train_smote, y_train_smote = smote.fit_resample(
+        X_train,
+        y_train
+    )
+
+    model.fit(X_train_smote, y_train_smote)
+
+    predictions = model.predict(X_test)
+```
+
+## Verification Results
+
+| Verification Item             | Status   |
+| ----------------------------- | -------- |
+| Stratified K-Fold Implemented | ✅ Passed |
+| 5-Fold Configuration Verified | ✅ Passed |
+| Class Distribution Preserved  | ✅ Passed |
+| SMOTE Applied Inside CV Loop  | ✅ Passed |
+| Data Leakage Prevention       | ✅ Passed |
+
+## Conclusion
+
+The cross-validation pipeline follows best practices by applying SMOTE only to the training portion of each fold. This ensures that no information from the test set influences model training, resulting in unbiased and reliable evaluation metrics.

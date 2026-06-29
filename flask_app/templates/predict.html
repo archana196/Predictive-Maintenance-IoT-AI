@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Predict Machine Failure</h2>
+
+<form>
+
+    <div class="mb-3">
+
+        <label>Air Temperature</label>
+
+        <input
+            type="number"
+            class="form-control">
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label>Torque</label>
+
+        <input
+            type="number"
+            class="form-control">
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label>Tool Wear</label>
+
+        <input
+            type="number"
+            class="form-control">
+
+    </div>
+
+
+    <button
+        class="btn btn-primary">
+
+        Predict
+
+    </button>
+
+</form>
+
+{% endblock %}
