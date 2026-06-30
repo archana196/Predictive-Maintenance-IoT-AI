@@ -406,8 +406,7 @@ Key Findings:
 * Updated Documentation
 
 ---
-
-## Week 3 – Model Development Preparation
+## Week 3 – Model Development & Evaluation Preparation
 
 ### Cross Validation Research
 
@@ -415,38 +414,191 @@ Research was conducted on:
 
 * K-Fold Cross Validation
 * Stratified K-Fold Cross Validation
-* Handling Imbalanced Datasets
+* Limitations of Normal K-Fold for Imbalanced Datasets
 * Model Evaluation Strategies
+* Data Leakage Prevention Techniques
 
-### Stratified K-Fold Setup
+### Stratified K-Fold Implementation
 
-A sample implementation was prepared using:
+A complete implementation was prepared using:
 
 ```python
 from sklearn.model_selection import StratifiedKFold
+
+skf = StratifiedKFold(
+    n_splits=5,
+    shuffle=True,
+    random_state=42
+)
 ```
 
 Objectives:
 
-* Preserve class distribution across folds
+* Preserve class distribution across all folds
 * Improve model evaluation reliability
 * Handle machine failure class imbalance
+* Reduce evaluation bias
+* Ensure reproducible experiments
 
 Deliverables:
 
 * stratified_cv_setup.ipynb
+* stratified_kfold.ipynb
+* stratified_cv_execution.ipynb
+* stratified_cv_results.ipynb
 * stratified_cv_notes.md
+* fold_distribution.md
+* fold_balance_report.md
+* cross_validation_results.md
+
+---
+
+### Class Imbalance Analysis
+
+The AI4I dataset contains significantly fewer machine failure instances compared to normal operating conditions.
+
+Analysis performed:
+
+* Target class distribution assessment
+* Minority class identification
+* Impact analysis on model performance
+* Evaluation of balancing strategies
+
+Findings:
+
+* The dataset exhibits class imbalance.
+* Traditional learning approaches may bias predictions toward the majority class.
+* Oversampling techniques are required for reliable failure prediction.
+
+---
+
+### SMOTE Implementation
+
+Synthetic Minority Oversampling Technique (SMOTE) was implemented to balance the training data.
+
+Objectives:
+
+* Improve minority class representation
+* Reduce model bias
+* Enhance predictive performance
+* Support reliable machine failure detection
+
+Validation:
+
+* Class distributions were compared before and after SMOTE.
+* Visualizations were created for analysis.
+* Balanced datasets were successfully generated.
+
+Deliverables:
+
+* week3_smote_analysis.ipynb
+* smote_analysis_report.md
+
+---
+
+### SMOTE Integration within Cross Validation
+
+To avoid data leakage, SMOTE was applied only to the training data inside each fold of the Stratified 5-Fold Cross Validation process.
+
+Implementation Strategy:
+
+```python
+for train_idx, test_idx in skf.split(X, y):
+
+    X_train = X.iloc[train_idx]
+    X_test = X.iloc[test_idx]
+
+    y_train = y.iloc[train_idx]
+    y_test = y.iloc[test_idx]
+
+    smote = SMOTE(random_state=42)
+
+    X_train_smote, y_train_smote = smote.fit_resample(
+        X_train,
+        y_train
+    )
+
+    model.fit(X_train_smote, y_train_smote)
+```
+
+Benefits:
+
+* Prevents information leakage
+* Ensures realistic model evaluation
+* Maintains unbiased testing conditions
+* Follows machine learning best practices
+
+Status: ✅ Verified
+
+---
+
+### Cross Validation Execution Results
+
+A complete Stratified 5-Fold Cross Validation pipeline was executed.
+
+Evaluation Metrics:
+
+* Fold-wise Accuracy
+* Mean Accuracy
+* Standard Deviation
+* Class Distribution Validation
+
+Observations:
+
+* Class distributions remained consistent across all folds.
+* Model performance showed stable behavior.
+* Low variance indicated reliable generalization.
+* Stratified sampling improved evaluation quality.
+
+Status: ✅ Complete
+
+---
+
+### Flask Dashboard Initialization
+
+A Flask web application structure was created for future deployment and demonstration.
+
+Implemented Components:
+
+* Home Page
+* Dashboard Page
+* Predict Page
+* Bootstrap Integration
+* Static CSS Structure
+* Template Inheritance
+
+Project Structure:
+
+```text
+flask_app/
+├── app.py
+├── requirements.txt
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   └── images/
+├── templates/
+│   ├── base.html
+│   ├── home.html
+│   ├── dashboard.html
+│   └── predict.html
+```
+
+Status: ✅ Initialized
+
+---
 
 ### Upcoming Tasks
 
-* Feature Engineering Optimization
-* Machine Learning Model Development
-* Random Forest Training
-* XGBoost Training
+* Random Forest Model Training
+* XGBoost Model Development
+* Hyperparameter Optimization
 * Model Comparison
 * Ablation Study
-* Performance Evaluation
 * Explainable AI Analysis
+* Dashboard Integration with ML Models
+* Performance Evaluation
+* Deployment Preparation
 
 ---
 
@@ -470,15 +622,30 @@ Deliverables:
 * Correlation Analysis
 * Documentation
 * Cross Validation Research
+* Stratified 5-Fold CV Implementation
+* Fold Distribution Validation
+* Class Imbalance Analysis
+* SMOTE Implementation
+* SMOTE Verification within CV Loop
+* Cross Validation Execution
+* Cross Validation Result Analysis
+* Flask Project Initialization
+* Home Page Development
+* Dashboard Development
+* Predict Page Development
+* Bootstrap Integration
 
 ## In Progress
 
-* Model Development
+* Random Forest Training
+* XGBoost Training
+* Model Comparison
 * Feature Engineering Enhancement
-* Stratified Cross Validation Setup
 * Ablation Study
-* Model Evaluation
+* Explainable AI Analysis
+* Dashboard Integration
+* Performance Optimization
 
 ## Expected Outcome
 
-The final AI-powered Predictive Maintenance System will leverage machine telemetry and contextual environmental information to predict machine failures before they occur. The system aims to reduce downtime, optimize maintenance schedules, improve operational efficiency, and support data-driven maintenance decision-making in industrial environments.
+The final AI-powered Predictive Maintenance System will leverage machine telemetry data and contextual environmental information to predict machine failures before they occur. The system aims to reduce downtime, optimize maintenance schedules, improve operational efficiency, and support intelligent, data-driven maintenance decisions in industrial manufacturing and automotive environments.
