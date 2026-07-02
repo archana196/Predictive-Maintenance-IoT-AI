@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="text-center">
+
+    <h1 class="mb-4">
+
+        Prediction Result
+
+    </h1>
+
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            {% if status == "Healthy" %}
+
+                <h2 class="text-success">
+
+                    Machine Healthy
+
+                </h2>
+
+            {% else %}
+
+                <h2 class="text-danger">
+
+                    Machine Failure Detected
+
+                </h2>
+
+            {% endif %}
+
+
+            <h4 class="mt-4">
+
+                Confidence:
+                {{ confidence }} %
+
+            </h4>
+
+
+            <div class="mt-4">
+
+                <a
+                    href="/"
+                    class="btn btn-primary">
+
+                    Predict Again
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
