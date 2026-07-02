@@ -753,6 +753,398 @@ The fusion process will generate a unified dataset containing:
 
 This dataset will be used for feature engineering, correlation analysis, and predictive maintenance model development in subsequent project phases.
 
+# week2:completed
+
+# Week 3: Machine Learning Model Development & Performance Evaluation
+
+## Week Objective
+
+The objective of Week 3 was to develop, train, and evaluate machine learning models capable of accurately predicting machine failures using the contextual dataset prepared during Week 2. This phase marked the transition from data preparation to predictive modeling by implementing robust machine learning techniques, addressing class imbalance, validating model performance, and preparing the trained model for deployment.
+
+The primary focus was to build a reliable predictive maintenance model that could identify machine failures with high accuracy while maintaining strong generalization performance. Special emphasis was placed on evaluating the effect of class balancing techniques and selecting the most suitable model for deployment.
+
+---
+
+# Week 3 Goals
+
+* Prepare the contextual dataset for machine learning.
+* Select relevant predictive features.
+* Separate the target variable.
+* Perform train-test splitting.
+* Handle class imbalance using SMOTE.
+* Implement Stratified K-Fold Cross Validation.
+* Train a LightGBM classifier.
+* Compare baseline and balanced models.
+* Evaluate multiple performance metrics.
+* Save the best-performing model.
+* Document the complete machine learning workflow.
+
+---
+
+# Machine Learning Workflow
+
+```text
+Contextual Dataset
+        │
+        ▼
+Data Preparation
+        │
+        ▼
+Feature Selection
+        │
+        ▼
+Train-Test Split
+        │
+        ▼
+SMOTE Balancing
+        │
+        ▼
+Stratified K-Fold Cross Validation
+        │
+        ▼
+LightGBM Model Training
+        │
+        ▼
+Performance Evaluation
+        │
+        ▼
+Baseline vs SMOTE Comparison
+        │
+        ▼
+Save Best Model (model.pkl)
+        │
+        ▼
+Deployment Preparation
+```
+
+---
+
+# Data Preparation
+
+The contextual dataset created during Week 2 was prepared for machine learning by selecting relevant features, removing unnecessary columns, separating the target variable, and dividing the data into training and testing datasets.
+
+The preparation process included:
+
+* Dataset verification
+* Feature selection
+* Target variable separation
+* Train-test splitting
+* Data integrity validation
+
+The prepared dataset served as the input for all machine learning experiments.
+
+---
+
+# Handling Class Imbalance
+
+Machine failure instances represent only a small portion of the dataset, making it highly imbalanced.
+
+To overcome this problem, the **Synthetic Minority Over-sampling Technique (SMOTE)** was incorporated into the training pipeline.
+
+Benefits include:
+
+* Balanced class distribution
+* Improved recall for failure prediction
+* Reduced prediction bias
+* Better model generalization
+
+SMOTE was applied only within the training folds during Stratified Cross Validation to prevent data leakage.
+
+---
+
+# Model Development
+
+Several experiments were conducted to evaluate the predictive performance of the dataset.
+
+The primary model selected was **LightGBM**, a gradient boosting framework designed for fast and efficient training on structured datasets.
+
+Reasons for selecting LightGBM include:
+
+* Fast training speed
+* High prediction accuracy
+* Excellent handling of large datasets
+* Built-in feature importance
+* Low memory usage
+
+Two experimental models were developed:
+
+* Baseline LightGBM Model
+* LightGBM with SMOTE
+
+These models were evaluated and compared to identify the best-performing configuration.
+
+---
+
+# Model Evaluation
+
+Performance was measured using multiple classification metrics.
+
+## Evaluation Metrics
+
+* Accuracy
+* Precision
+* Recall
+* F1-Score
+* ROC-AUC Score
+
+To obtain reliable estimates, Stratified K-Fold Cross Validation was implemented, ensuring each fold preserved the original class distribution.
+
+---
+
+# Performance Comparison
+
+A comprehensive comparison was performed between:
+
+* Baseline Model
+* SMOTE Model
+
+The comparison included:
+
+* Cross-validation scores
+* Confusion Matrix
+* ROC Curve
+* Classification Report
+* Performance Summary
+
+The SMOTE-based model demonstrated improved performance in detecting machine failures while maintaining competitive overall accuracy.
+
+---
+
+# Model Serialization
+
+The final LightGBM model was serialized and saved as:
+
+```text
+models/
+└── model.pkl
+```
+
+This model will be integrated into the Streamlit dashboard during Week 4.
+
+---
+
+# Project Structure (Week 3)
+
+```text
+project/
+│
+├── data/
+│   ├── context_features_dataset.csv
+│   ├── train.csv
+│   └── test.csv
+│
+├── models/
+│   └── model.pkl
+│
+├── notebooks/
+│   ├── lightgbm_baseline.ipynb
+│   ├── smote_training.ipynb
+│   ├── stratified_cv.ipynb
+│   └── performance_evaluation.ipynb
+│
+├── reports/
+│   ├── lightgbm_report.md
+│   ├── performance_summary.md
+│   ├── model_comparison.md
+│   └── week3_report.md
+│
+├── docs/
+│   ├── week3_cv_smote_workflow.md
+│   └── model_documentation.md
+│
+├── predictor.py
+│
+└── README.md
+```
+
+---
+
+# File Descriptions
+
+## notebooks/
+
+### lightgbm_baseline.ipynb
+
+Implements the baseline LightGBM classifier using the prepared contextual dataset and records the initial model performance.
+
+### smote_training.ipynb
+
+Applies SMOTE within the training pipeline to balance class distribution before model training.
+
+### stratified_cv.ipynb
+
+Implements Stratified K-Fold Cross Validation to evaluate model performance across multiple folds while maintaining class balance.
+
+### performance_evaluation.ipynb
+
+Generates evaluation metrics, confusion matrices, ROC curves, and comparison tables for all trained models.
+
+---
+
+## models/
+
+### model.pkl
+
+Stores the final trained LightGBM model for deployment in the Streamlit dashboard.
+
+---
+
+## reports/
+
+### lightgbm_report.md
+
+Documents baseline model training, configuration, and evaluation results.
+
+### performance_summary.md
+
+Summarizes evaluation metrics, cross-validation scores, and comparison results.
+
+### model_comparison.md
+
+Provides a detailed comparison between the baseline and SMOTE-enhanced models.
+
+### week3_report.md
+
+Comprehensive report describing all Week 3 activities, experiments, findings, and deliverables.
+
+---
+
+## docs/
+
+### week3_cv_smote_workflow.md
+
+Explains the complete machine learning workflow, including SMOTE integration and Stratified Cross Validation.
+
+### model_documentation.md
+
+Provides technical documentation for the LightGBM model, training methodology, and deployment preparation.
+
+---
+
+# Week 3 Deliverables
+
+Completed deliverables include:
+
+* Contextual dataset preparation
+* Feature selection
+* Train-test split
+* SMOTE implementation
+* Stratified Cross Validation
+* LightGBM baseline model
+* Model comparison
+* Performance evaluation
+* Saved `model.pkl`
+* Prediction utility
+* Documentation updates
+* Week 3 progress report
+
+---
+
+# Challenges Encountered
+
+* Handling severe class imbalance.
+* Preventing data leakage during SMOTE implementation.
+* Selecting appropriate evaluation metrics.
+* Comparing multiple model configurations.
+* Optimizing model performance while maintaining generalization.
+
+These challenges were addressed through careful validation, cross-validation, and structured experimentation.
+
+---
+
+# Key Outcomes
+
+* Successfully developed a predictive maintenance model.
+* Improved machine failure prediction using SMOTE.
+* Generated comprehensive performance evaluation reports.
+* Prepared a deployment-ready `model.pkl`.
+* Established a robust machine learning pipeline for future deployment.
+
+---
+
+# Team Responsibilities
+
+| Team Member   | Responsibility                                                                               |
+| ------------- | -------------------------------------------------------------------------------------------- |
+| **Archana**   | Baseline model evaluation, performance comparison, final validation                          |
+| **Ajay**      | Stratified Cross Validation verification, SMOTE validation, deployment planning              |
+| **Abhay**     | LightGBM model development, optimization, model serialization                                |
+| **Arundhati** | Documentation, workflow diagrams, performance reports, repository management, README updates |
+
+---
+
+# Conclusion
+
+Week 3 successfully transformed the contextual predictive maintenance dataset into a complete machine learning solution. Through careful data preparation, class balancing using SMOTE, Stratified Cross Validation, and LightGBM model training, the team developed a reliable predictive model capable of identifying machine failures with improved performance. The trained model was saved for deployment, and the project is now ready to progress into Week 4, which focuses on noise sensitivity analysis and Streamlit-based dashboard development.
+
+# week3:completed
+
+# Week 4: Noise Sensitivity Analysis & Dashboard Development
+
+## Week Objective
+
+The objective of Week 4 is to evaluate the robustness of the trained LightGBM model under simulated noisy sensor conditions while initiating deployment through a Streamlit-based dashboard. Real-world industrial IoT sensors are often affected by electrical interference, environmental disturbances, calibration drift, and hardware degradation. Therefore, robustness testing is essential to ensure reliable predictive maintenance performance.
+
+---
+
+## Major Activities
+
+### Noise Generation
+
+Gaussian noise is injected into the numerical sensor features at multiple intensity levels (5%, 10%, and 20%) to simulate realistic sensor inaccuracies. Reusable utilities are developed for generating noisy datasets for future robustness experiments.
+
+### Noise Sensitivity Analysis
+
+The trained LightGBM model is evaluated using both the original and noisy test datasets. Performance metrics are compared to determine how increasing sensor noise affects prediction quality.
+
+Evaluation metrics include:
+
+* Accuracy
+* Precision
+* Recall
+* F1-Score
+* ROC-AUC
+
+### Performance Visualization
+
+Charts are generated to compare the model's performance under different noise levels, helping visualize metric degradation and assess model stability.
+
+### Dashboard Development
+
+A Streamlit dashboard is initialized to provide an interactive interface for loading the trained model, displaying machine health predictions, and supporting future deployment.
+
+---
+
+## Week 4 Deliverables
+
+* Gaussian noise generation utilities
+* Noise sensitivity analysis notebook
+* Performance comparison report
+* Technical documentation
+* Visualization charts
+* Initial Streamlit dashboard
+* Updated README
+
+---
+
+## Expected Outcomes
+
+* Evaluate model robustness under noisy sensor conditions.
+* Understand the impact of sensor inaccuracies on predictive performance.
+* Produce visual reports illustrating metric degradation.
+* Establish the foundation for deployment using Streamlit.
+
+---
+
+## Team Responsibilities
+
+| Team Member   | Responsibility                                                     |
+| ------------- | ------------------------------------------------------------------ |
+| **Archana**   | Model robustness evaluation and performance comparison             |
+| **Ajay**      | Streamlit dashboard initialization and interface development       |
+| **Abhay**     | Gaussian noise generation utilities and noisy dataset creation     |
+| **Arundhati** | Documentation, visualization, technical guides, and README updates |
+
 
 # Technologies Used
 
