@@ -2,130 +2,194 @@
 
 {% block content %}
 
-<div class="row">
+<div class="container mt-4">
 
-    <div class="col-md-3">
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <h1 class="text-primary">
+                AI-Powered Predictive Maintenance Dashboard
+            </h1>
 
-        <div class="list-group">
+            <h3>Machine Health Status</h3>
 
-            <a class="list-group-item active">
-                Navigation
-            </a>
-
-            <a href="/" class="list-group-item">
-                Home
-            </a>
-
-            <a href="#predict" class="list-group-item">
-                Predict
-            </a>
-
+            <p>
+                Real-time prediction using LightGBM and contextual IoT data.
+            </p>
         </div>
-
     </div>
 
+    <div class="card shadow-sm">
 
-    <div class="col-md-9">
-
-        <h1 class="mb-4">
-            Manufacturing & Automotive
-            Predictive Maintenance Dashboard
-        </h1>
-
-        <div class="card mb-4">
-
-            <div class="card-body">
-
-                <h4>Machine Health Status</h4>
-
-                <p>
-                    Real-time prediction using
-                    LightGBM and contextual IoT data.
-                </p>
-
-            </div>
-
+        <div class="card-header">
+            <h4>Prediction Form</h4>
         </div>
 
+        <div class="card-body">
 
-        <div class="card">
+            <form action="/predict" method="POST">
 
-            <div class="card-header">
-                Prediction Form
-            </div>
+                <!-- Machine Type -->
+                <label>Machine Type</label>
+                <select name="Type" class="form-control mb-3">
+                    <option value="0">L</option>
+                    <option value="1">M</option>
+                    <option value="2">H</option>
+                </select>
 
-            <div class="card-body">
 
-                <form
-                    action="/predict"
-                    method="POST">
+                <!-- Core Features -->
 
-                    <input
-                        class="form-control mb-2"
-                        type="number"
-                        step="0.1"
-                        name="air_temp"
-                        placeholder="Air Temperature">
+                <input type="number"
+                       step="0.1"
+                       required
+                       name="Air_temperature_K"
+                       class="form-control mb-3"
+                       placeholder="Air Temperature (K)">
 
-                    <input
-                        class="form-control mb-2"
-                        type="number"
-                        step="0.1"
-                        name="process_temp"
-                        placeholder="Process Temperature">
+                <input type="number"
+                       step="0.1"
+                       required
+                       name="Process_temperature_K"
+                       class="form-control mb-3"
+                       placeholder="Process Temperature (K)">
 
-                    <input
-                        class="form-control mb-2"
-                        type="number"
-                        step="0.1"
-                        name="rotational_speed"
-                        placeholder="Rotational Speed">
+                <input type="number"
+                       step="0.1"
+                       required
+                       name="Rotational_speed_rpm"
+                       class="form-control mb-3"
+                       placeholder="Rotational Speed (RPM)">
 
-                    <input
-                        class="form-control mb-2"
-                        type="number"
-                        step="0.1"
-                        name="torque"
-                        placeholder="Torque">
+                <input type="number"
+                       step="0.1"
+                       required
+                       name="Torque_Nm"
+                       class="form-control mb-3"
+                       placeholder="Torque (Nm)">
 
-                    <input
-                        class="form-control mb-2"
-                        type="number"
-                        step="0.1"
-                        name="tool_wear"
-                        placeholder="Tool Wear">
+                <input type="number"
+                       step="0.1"
+                       required
+                       name="Tool_wear_min"
+                       class="form-control mb-3"
+                       placeholder="Tool Wear (Minutes)">
 
-                    <input
-                        class="form-control mb-2"
-                        type="number"
-                        step="0.1"
-                        name="ambient_temp"
-                        placeholder="Ambient Temperature">
 
-                    <input
-                        class="form-control mb-2"
-                        type="number"
-                        step="0.1"
-                        name="load_density"
-                        placeholder="Load Density">
+                <!-- Failure Indicators -->
 
-                    <input
-                        class="form-control mb-3"
-                        type="number"
-                        step="0.1"
-                        name="humidity"
-                        placeholder="Humidity">
+                <label>TWF</label>
+                <input type="number"
+                       value="0"
+                       name="TWF"
+                       class="form-control mb-3">
 
-                    <button
-                        class="btn btn-primary">
+                <label>HDF</label>
+                <input type="number"
+                       value="0"
+                       name="HDF"
+                       class="form-control mb-3">
 
-                        Predict Machine Health
+                <label>PWF</label>
+                <input type="number"
+                       value="0"
+                       name="PWF"
+                       class="form-control mb-3">
 
-                    </button>
+                <label>OSF</label>
+                <input type="number"
+                       value="0"
+                       name="OSF"
+                       class="form-control mb-3">
 
-                </form>
+                <label>RNF</label>
+                <input type="number"
+                       value="0"
+                       name="RNF"
+                       class="form-control mb-3">
 
-            </div>
+
+                <!-- Timestamp -->
+
+                <input type="number"
+                       value="100"
+                       required
+                       name="timestamp"
+                       class="form-control mb-3"
+                       placeholder="Timestamp">
+
+
+                <!-- Context Features -->
+
+                <input type="number"
+                       step="0.1"
+                       required
+                       name="Ambient_Temperature"
+                       class="form-control mb-3"
+                       placeholder="Ambient Temperature">
+
+                <input type="number"
+                       step="0.1"
+                       required
+                       name="Load_Density"
+                       class="form-control mb-3"
+                       placeholder="Load Density (%)">
+
+                <input type="number"
+                       step="0.1"
+                       required
+                       name="Humidity"
+                       class="form-control mb-3"
+                       placeholder="Humidity (%)">
+
+
+                <!-- Shift -->
+
+                <label>Shift</label>
+
+                <select name="Shift"
+                        class="form-control mb-3">
+
+                    <option value="0">
+                        Morning
+                    </option>
+
+                    <option value="1">
+                        Evening
+                    </option>
+
+                    <option value="2">
+                        Night
+                    </option>
+
+                </select>
+
+
+                <!-- Day Type -->
+
+                <label>Day Type</label>
+
+                <select name="Day_Type"
+                        class="form-control mb-4">
+
+                    <option value="0">
+                        Weekday
+                    </option>
+
+                    <option value="1">
+                        Weekend
+                    </option>
+
+                </select>
+
+
+                <button type="submit"
+                        class="btn btn-primary btn-lg">
+
+                    Predict Machine Health
+
+                </button>
+
+            </form>
 
         </div>
 
