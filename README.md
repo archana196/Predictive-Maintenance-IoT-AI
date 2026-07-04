@@ -554,24 +554,42 @@ Status: ✅ Complete
 
 ---
 
-### Flask Dashboard Initialization
+### Flask Dashboard & LightGBM Integration
 
-A Flask web application structure was created for future deployment and demonstration.
+A complete Flask web application was developed and successfully integrated with the trained LightGBM predictive maintenance model.
 
 Implemented Components:
 
 * Home Page
 * Dashboard Page
-* Predict Page
-* Bootstrap Integration
-* Static CSS Structure
+* Prediction Interface
+* Bootstrap-based Responsive UI
 * Template Inheritance
+* Static CSS Styling
+* Model Loading using Joblib
+* Backend Prediction Pipeline
+* Confidence Score Visualization
+* Machine Health Status Display
+
+Machine Learning Integration:
+
+* Loaded trained LightGBM model (`model.pkl`)
+* Accepted 20 input features from users
+* Generated engineered features automatically:
+  * Temperature Difference
+  * Load Ratio
+  * Humidity Impact
+* Produced:
+  * Healthy / Failure prediction
+  * Prediction confidence score
 
 Project Structure:
 
 ```text
 flask_app/
 ├── app.py
+├── model/
+│   └── model.pkl
 ├── requirements.txt
 ├── static/
 │   ├── css/
@@ -579,25 +597,49 @@ flask_app/
 │   └── images/
 ├── templates/
 │   ├── base.html
-│   ├── home.html
-│   ├── dashboard.html
-│   └── predict.html
+│   ├── index.html
+│   └── results.html
 ```
 
-Status: ✅ Initialized
+Status: ✅ completed
 
 ---
 
+## LightGBM Model Features
+
+The deployed LightGBM model utilizes the following features:
+
+```text
+Type
+Air_temperature_K
+Process_temperature_K
+Rotational_speed_rpm
+Torque_Nm
+Tool_wear_min
+TWF
+HDF
+PWF
+OSF
+RNF
+timestamp
+Ambient_Temperature
+Load_Density
+Humidity
+Shift
+Day_Type
+temp_diff
+load_ratio
+humidity_impact
+```
+
 ### Upcoming Tasks
 
-* Random Forest Model Training
+* Random Forest Hyperparameter Tuning
 * XGBoost Model Development
-* Hyperparameter Optimization
-* Model Comparison
+* SHAP-based Explainability Analysis
 * Ablation Study
-* Explainable AI Analysis
-* Dashboard Integration with ML Models
-* Performance Evaluation
+* Comparative Model Evaluation
+* Final Dashboard Enhancement
 * Deployment Preparation
 
 ---
@@ -634,17 +676,46 @@ Status: ✅ Initialized
 * Dashboard Development
 * Predict Page Development
 * Bootstrap Integration
+* Flask–LightGBM Integration
+* Model Loading using Joblib
+* Prediction Interface Development
+* Bootstrap UI Development
+* Machine Health Dashboard Implementation
+* Confidence Score Visualization
+* Backend Prediction Pipeline
+
+
+---
+
+### Add a final project status note:
+
+```markdown
+## Current Project Maturity
+
+Week 1: ✅ Data Preparation & Validation
+
+Week 2: ✅ Contextual Data Fusion & Feature Engineering
+
+Week 3: ✅ Cross Validation, SMOTE, Flask Dashboard & LightGBM Integration
+
+Remaining Work:
+
+* Model Optimization
+* Explainable AI (SHAP)
+* Ablation Study
+* Final Deployment
+```
 
 ## In Progress
 
 * Random Forest Training
 * XGBoost Training
 * Model Comparison
-* Feature Engineering Enhancement
+* Hyperparameter Optimization
 * Ablation Study
-* Explainable AI Analysis
-* Dashboard Integration
+* Explainable AI (SHAP) Analysis
 * Performance Optimization
+* Final Deployment Preparation
 
 ## Expected Outcome
 
