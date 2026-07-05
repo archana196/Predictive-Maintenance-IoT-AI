@@ -1,112 +1,266 @@
+# Predictive Maintenance System using IoT, Context-Aware AI, and LightGBM
 
+## Overview
 
-# Predictive Maintenance using IoT & AI
+The **Predictive Maintenance System** is an intelligent machine failure prediction application that combines industrial sensor data, contextual environmental features, and machine learning to predict equipment failures before they occur.
 
-## Project Overview
-
-This repository contains my contributions to the Predictive Maintenance using IoT & AI project. The objective is to develop a machine learning model capable of predicting machine failures by combining industrial sensor data with simulated contextual information.
-
----
-
-## Contributions
-
-### Dataset Preparation
-
-* Uploaded and organized the AI4I 2020 Predictive Maintenance dataset.
-* Explored the dataset and identified the target variable and input features.
-* Removed unnecessary identifier columns for modeling.
-* Analyzed class imbalance in the dataset.
-
-### Contextual Data Integration
-
-* Simulated timestamp values for every machine record.
-* Designed the structure of the external contextual dataset.
-* Merged machine sensor data with contextual information using timestamps.
-* Validated merged data and resolved timestamp inconsistencies.
-
-### Feature Engineering
-
-* Created contextual features including:
-
-  * Temperature Difference (`temp_diff`)
-  * Load Ratio (`load_ratio`)
-  * Humidity Impact (`humidity_impact`)
-* Performed correlation analysis on engineered features.
-* Prepared the final modeling dataset.
-
-### Machine Learning Preparation
-
-* Prepared feature (`X`) and target (`y`) datasets.
-* Verified class imbalance before model training.
-* Initialized the LightGBM training workflow.
-* Generated baseline model evaluation metrics.
-
-### Project Coordination
-
-* Created and managed GitHub Issues.
-* Updated the project board.
-* Coordinated task distribution among team members.
-* Maintained project documentation.
+The project is developed using the **AI4I Predictive Maintenance Dataset** and enhanced with additional contextual parameters such as ambient temperature, humidity, operational shift, and day type. A **LightGBM** classifier is trained to classify whether a machine is likely to fail, and a **Flask web application** provides an interactive interface for real-time predictions.
 
 ---
 
-## Repository Structure
+## Objectives
 
-```text
-data/
-├── ai4i2020.csv
-├── timestamps_added.csv
-├── external_context.csv
-├── context_features_dataset.csv
-├── model_ready_dataset.csv
+* Predict machine failures before they occur.
+* Reduce unexpected machine downtime.
+* Support preventive maintenance decisions.
+* Improve industrial reliability through AI-powered predictions.
+* Provide an easy-to-use web interface for maintenance engineers.
 
-notebooks/
-├── timestamp_creation.ipynb
-├── context_merge.ipynb
-├── feature_engineering.ipynb
-├── week3_modeling_setup.ipynb
-├── lightgbm_training.ipynb
+---
 
-reports/
-├── class_distribution.md
-├── week3_dataset_summary.md
-├── lightgbm_setup_report.md
+## Features
 
-docs/
-├── context_overview.md
-├── project_notes.md
-```
+* Context-aware machine failure prediction
+* LightGBM machine learning model
+* Flask-based web application
+* Real-time prediction with confidence score
+* User-friendly Bootstrap interface
+* Feature engineering using environmental and operational data
+* Model trained using only the most important features
+* Professional project structure suitable for deployment
 
 ---
 
 ## Technologies Used
 
-* Python
+### Programming Language
+
+* Python 3.x
+
+### Machine Learning
+
+* LightGBM
+* Scikit-learn
 * Pandas
 * NumPy
-* Scikit-learn
+
+### Web Framework
+
+* Flask
+
+### Frontend
+
+* HTML5
+* Bootstrap 5
+* CSS
+
+### Model Serialization
+
+* Joblib
+
+---
+
+## Dataset
+
+Dataset used:
+
+**AI4I 2020 Predictive Maintenance Dataset**
+
+Additional contextual features were engineered to improve prediction performance.
+
+---
+
+## Context Features Added
+
+The project extends the original dataset by introducing additional contextual information.
+
+* Ambient Temperature
+* Load Density
+* Humidity
+* Shift
+* Day Type
+
+These features help improve the robustness of machine failure prediction.
+
+---
+
+## Final Model Features
+
+The final LightGBM model is trained using the following **11 essential features**:
+
+1. Type
+2. Air Temperature (K)
+3. Process Temperature (K)
+4. Rotational Speed (RPM)
+5. Torque (Nm)
+6. Tool Wear (min)
+7. Ambient Temperature
+8. Load Density
+9. Humidity
+10. Shift
+11. Day Type
+
+---
+
+## Project Workflow
+
+1. Load industrial sensor dataset
+2. Perform preprocessing
+3. Engineer contextual features
+4. Encode categorical variables
+5. Train LightGBM classifier
+6. Evaluate model performance
+7. Save trained model
+8. Integrate model with Flask
+9. Predict machine condition using user inputs
+10. Display prediction probability and machine health status
+
+---
+
+## Project Structure
+
+```text
+Predictive-Maintenance-IoT-AI
+│
+├── app.py
+├── README.md
+├── requirements.txt
+│
+├── data
+│   ├── ai4i2020.csv
+│   ├── context_merged_dataset.csv
+│   ├── model_ready_dataset.csv
+│
+├── models
+│   ├── model.pkl
+│   └── encoders.pkl
+│
+├── notebooks
+│   ├── week3_modeling_setup.ipynb
+│   ├── contextual_feature_engineering.ipynb
+│   ├── correlation_analysis.ipynb
+│
+├── reports
+│
+├── static
+│   ├── css
+│   ├── images
+│
+├── templates
+│   ├── index.html
+│   └── result.html
+│
+├── utils
+│   └── predictor.py
+│
+└── test_predictor.py
+```
+
+---
+
+## Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/your-username/Predictive-Maintenance-IoT-AI.git
+```
+
+Move into the project
+
+```bash
+cd Predictive-Maintenance-IoT-AI
+```
+
+Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the application
+
+```bash
+python app.py
+```
+
+Open your browser
+
+```
+http://127.0.0.1:5000
+```
+
+---
+
+## Machine Learning Model
+
+Algorithm:
+
+* LightGBM Classifier
+
+Reasons for selection:
+
+* High prediction accuracy
+* Fast training speed
+* Efficient handling of tabular data
+* Excellent performance on industrial datasets
+* Feature importance analysis support
+
+---
+
+## Input Parameters
+
+The web application accepts the following inputs:
+
+* Machine Type
+* Air Temperature
+* Process Temperature
+* Rotational Speed
+* Torque
+* Tool Wear
+* Ambient Temperature
+* Load Density
+* Humidity
+* Shift
+* Day Type
+
+---
+
+## Output
+
+The application predicts:
+
+* Machine Health Status
+* Failure Probability
+* Healthy or Failure Classification
+
+---
+
+## Future Enhancements
+
+* IoT sensor integration
+* MQTT real-time data streaming
+* Cloud deployment
+* Predictive maintenance dashboard
+* Email and SMS alerts
+* Maintenance scheduling system
+* Historical prediction logs
+* Interactive analytics dashboard
+
+---
+
+## Acknowledgements
+
+* AI4I 2020 Predictive Maintenance Dataset
 * LightGBM
-* Matplotlib
-* Git & GitHub
-* Jupyter Notebook
+* Scikit-learn
+* Flask
+* Bootstrap
 
 ---
 
-## Current Progress
+## License
 
-* ✅ Dataset preparation completed
-* ✅ Contextual data integration completed
-* ✅ Feature engineering completed
-* ✅ Baseline LightGBM model implemented
-* 🔄 Stratified Cross Validation and SMOTE integration in progress
+This project is developed for educational and internship purposes.
 
----
-
-## Future Work
-
-* Implement Stratified 5-Fold Cross Validation
-* Integrate SMOTE within training folds
-* Compare baseline and balanced models
-* Evaluate Precision, Recall, F1-Score, ROC-AUC
-* Finalize project documentation and results
 
