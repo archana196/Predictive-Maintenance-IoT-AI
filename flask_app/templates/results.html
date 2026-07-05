@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-primary text-white">
+
+                    <h2 class="text-center">
+
+                        Prediction Results
+
+                    </h2>
+
+                </div>
+
+                <div class="card-body text-center">
+
+                    {% if status == "Healthy" %}
+
+                    <div class="alert alert-success">
+
+                        <h2>
+
+                            ✅ Machine Healthy
+
+                        </h2>
+
+                    </div>
+
+                    {% else %}
+
+                    <div class="alert alert-danger">
+
+                        <h2>
+
+                            ⚠️ Machine Failure Detected
+
+                        </h2>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <hr>
+
+
+                    <h4>
+
+                        Prediction:
+
+                        <strong>
+
+                            {{ status }}
+
+                        </strong>
+
+                    </h4>
+
+
+                    <h4 class="mt-3">
+
+                        Confidence:
+
+                        <strong>
+
+                            {{ confidence }} %
+
+                        </strong>
+
+                    </h4>
+
+
+                    <div class="mt-4">
+
+                        <a href="/"
+                           class="btn btn-primary">
+
+                            Predict Again
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
