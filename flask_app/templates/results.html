@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% block title %}Prediction Result{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-7 col-md-9">
+
+      <!-- Result Card -->
+      <div class="glass-card
+        {% if status == 'Healthy' %}result-card-healthy pulse-healthy{% else %}result-card-failure pulse-failure{% endif %}
+        text-center fade-in-up">
+
+        <!-- Card Header -->
+        <div class="card-header-gradient">
+          <h2 style="font-size:1rem; font-weight:700; margin:0; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.1em;">
+            <i class="bi bi-clipboard2-pulse me-2"></i> Prediction Results
+          </h2>
+        </div>
+
+        <div class="p-4 p-md-5">
+
+          <!-- Status Icon -->
+          {% if status == "Healthy" %}
+            <span class="result-icon">✅</span>
+            <div class="result-status-text healthy mb-1">Machine Healthy</div>
+            <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:2rem;">
+              No failure detected. The machine is operating within normal parameters.
+            </p>
+          {% else %}
+            <span class="result-icon">⚠️</span>
+            <div class="result-status-text failure mb-1">Failure Detected</div>
+            <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:2rem;">
+              Potential machine failure identified. Immediate inspection is recommended.
+            </p>
+          {% endif %}
+
+          <!-- Confidence Progress Bar -->
+          <div class="mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.07em;">
+                Model Confidence
+              </span>
+              <span style="font-size:1rem; font-weight:700; color:var(--text-primary);">
+                {{ confidence }}%
+              </span>
+            </div>
+            <div class="confidence-bar">
+              <div class="progress">
+                <div
+                  class="progress-bar {% if status == 'Healthy' %}bg-success{% else %}bg-danger{% endif %}"
+                  role="progressbar"
+                  style="width: {{ confidence }}%"
+                  aria-valuenow="{{ confidence }}"
+                  aria-valuemin="0"
+                  aria-valuemax="100">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Meta Info Row -->
+          <div class="result-meta-row">
+
+            <!-- Prediction -->
+            <div class="result-meta-item">
+              <div class="result-meta-label">Prediction</div>
+              <div class="result-meta-value">
+                {% if status == "Healthy" %}
+                  <span class="badge bg-success">{{ status }}</span>
+                {% else %}
+                  <span class="badge bg-danger">{{ status }}</span>
+                {% endif %}
+              </div>
+            </div>
+
+            <!-- Risk Level -->
+            <div class="result-meta-item">
+              <div class="result-meta-label">Risk Level</div>
+              <div class="result-meta-value">
+                {% if risk_level == "Low" %}
+                  <span class="badge badge-risk-low">🟢 {{ risk_level }}</span>
+                {% elif risk_level == "Medium" %}
+                  <span class="badge badge-risk-medium">🟡 {{ risk_level }}</span>
+                {% else %}
+                  <span class="badge badge-risk-high">🔴 {{ risk_level }}</span>
+                {% endif %}
+              </div>
+            </div>
+
+            <!-- Machine Type -->
+            <div class="result-meta-item">
+              <div class="result-meta-label">Machine Type</div>
+              <div class="result-meta-value" style="color:var(--accent-cyan);">
+                <i class="bi bi-cpu me-1"></i> {{ machine_type }}
+              </div>
+            </div>
+
+            <!-- Prediction Time -->
+            <div class="result-meta-item">
+              <div class="result-meta-label">Prediction Time</div>
+              <div class="result-meta-value" style="font-size:0.82rem; color:var(--text-secondary);">
+                {{ prediction_time }}
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+
+            <a href="{{ url_for('home') }}" class="btn btn-primary">
+              <i class="bi bi-arrow-repeat me-1"></i> Predict Again
+            </a>
+
+            <a href="{{ url_for('history') }}" class="btn btn-outline-light">
+              <i class="bi bi-clock-history me-1"></i> View History
+            </a>
+
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">
+              <i class="bi bi-box-arrow-right me-1"></i> Logout
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+      <!-- END Result Card -->
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Animate confidence bar on page load
+  document.addEventListener('DOMContentLoaded', function () {
+    const bar = document.querySelector('.progress-bar');
+    if (bar) {
+      const target = bar.getAttribute('aria-valuenow');
+      bar.style.width = '0%';
+      setTimeout(function () {
+        bar.style.width = target + '%';
+      }, 200);
+    }
+  });
+</script>
+{% endblock %}
