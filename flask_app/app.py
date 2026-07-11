@@ -1,18 +1,7 @@
 from flask import Flask, render_template, request
-import joblib
-import os
+from utils.predictor import predict_machine
 
-# Initialize Flask app
 app = Flask(__name__)
-
-# Load LightGBM model
-MODEL_PATH = os.path.join(
-    os.path.dirname(__file__),
-    "model",
-    "model.pkl"
-)
-
-model = joblib.load(MODEL_PATH)
 
 
 @app.route("/")
@@ -23,70 +12,143 @@ def home():
 @app.route("/predict", methods=["POST"])
 def predict():
 
-    type_value = int(request.form["Type"])
+    try:
 
-    air_temp = float(request.form["Air_temperature_K"])
-    process_temp = float(request.form["Process_temperature_K"])
-    rotational_speed = float(request.form["Rotational_speed_rpm"])
-    torque = float(request.form["Torque_Nm"])
-    tool_wear = float(request.form["Tool_wear_min"])
+        # -----------------------------
+        # Read form inputs
+        # -----------------------------
 
-    twf = int(request.form["TWF"])
-    hdf = int(request.form["HDF"])
-    pwf = int(request.form["PWF"])
-    osf = int(request.form["OSF"])
-    rnf = int(request.form["RNF"])
+        data = {
 
-    timestamp = float(request.form["timestamp"])
+            "Type": request.form["Type"],
 
-    ambient_temp = float(request.form["Ambient_Temperature"])
-    load_density = float(request.form["Load_Density"])
-    humidity = float(request.form["Humidity"])
+            "Air_temperature_K": float(request.form["Air_temperature_K"]),
 
-    shift = int(request.form["Shift"])
-    day_type = int(request.form["Day_Type"])
+            "Process_temperature_K": float(request.form["Process_temperature_K"]),
 
-    # Engineered features
-    temp_diff = process_temp - air_temp
-    load_ratio = load_density / 100
-    humidity_impact = humidity * ambient_temp
+            "Rotational_speed_rpm": float(request.form["Rotational_speed_rpm"]),
 
-    features = [[
-        type_value,
-        air_temp,
-        process_temp,
-        rotational_speed,
-        torque,
-        tool_wear,
-        twf,
-        hdf,
-        pwf,
-        osf,
-        rnf,
-        timestamp,
-        ambient_temp,
-        load_density,
-        humidity,
-        shift,
-        day_type,
-        temp_diff,
-        load_ratio,
-        humidity_impact
-    ]]
+            "Torque_Nm": float(request.form["Torque_Nm"]),
 
-    prediction = model.predict(features)[0]
-    probability = model.predict_proba(features)[0]
+            "Tool_wear_min": float(request.form["Tool_wear_min"]),
 
-    confidence = round(max(probability) * 100, 2)
+            "Ambient_Temperature": float(request.form["Ambient_Temperature"]),
 
-    status = "Healthy" if prediction == 0 else "Failure"
+            "Load_Density": float(request.form["Load_Density"]),
 
-    return render_template(
-        "results.html",
-        status=status,
-        confidence=confidence
-    )
+            "Humidity": float(request.form["Humidity"]),
+
+            "Shift": request.form["Shift"],
+
+            "Day_Type": request.form["Day_Type"]
+
+        }
+
+        # -----------------------------
+        # Prediction
+        # -----------------------------
+
+        prediction, probability = predict_machine(data)
+
+        probability = round(probability * 100, 2)
+
+        # -----------------------------
+        # Result
+        # -----------------------------
+
+        if prediction == 1:
+
+            result = "⚠️ Machine Failure Predicted"
+
+            color = "danger"
+
+        else:
+
+            result = "✅ Machine is Healthy"
+
+            color = "success"
+
+        # -----------------------------
+        # Risk Level
+        # -----------------------------
+
+        if probability < 20:
+
+            risk = "LOW"
+
+        elif probability < 50:
+
+            risk = "MEDIUM"
+
+        else:
+
+            risk = "HIGH"
+
+        # -----------------------------
+        # Recommendation
+        # -----------------------------
+
+        if risk == "LOW":
+
+            recommendation = (
+                "Machine is operating normally. Continue routine maintenance."
+            )
+
+        elif risk == "MEDIUM":
+
+            recommendation = (
+                "Monitor the machine closely. Preventive maintenance is recommended."
+            )
+
+        else:
+
+            recommendation = (
+                "Immediate inspection is recommended. High possibility of machine failure."
+            )
+
+        # -----------------------------
+        # Render Result Page
+        # -----------------------------
+
+        return render_template(
+
+            "result.html",
+
+            prediction=result,
+
+            probability=probability,
+
+            color=color,
+
+            risk=risk,
+
+            recommendation=recommendation,
+
+            data=data
+
+        )
+
+    except Exception as e:
+
+        return f"<h2>Error:</h2><p>{str(e)}</p>"
+
+
+@app.route("/about")
+def about():
+
+    return """
+    <h2>Predictive Maintenance System</h2>
+    <p>
+    AI-powered machine failure prediction using
+    LightGBM, Flask, and Context-Aware Features.
+    </p>
+    """
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+
+    app.run(
+        debug=True,
+        host="0.0.0.0",
+        port=5000
+    )
